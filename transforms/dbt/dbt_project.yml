@@ -1,0 +1,79 @@
+name: edgar_x
+version: "1.0.0"
+profile: edgar_x
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: target
+clean-targets: [target, dbt_packages]
+
+models:
+  edgar_x:
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: view
+    marts:
+      +schema: marts
+      +materialized: table
+
+seeds:
+  edgar_x:
+    # Seeds emulate the Kafka -> warehouse raw landing tables. Dev-only:
+    # in prod the raw schema is written by the Kafka sink, and loading these
+    # seeds there would clobber the real landing tables.
+    +enabled: "{{ (target.name == 'dev') | as_bool }}"
+    +schema: raw
+    raw_filings:
+      +column_types:
+        cik: varchar
+        filing_date: date
+        ingested_at: timestamp
+    raw_transcript_segments:
+      +column_types:
+        fiscal_year: integer
+        fiscal_quarter: integer
+        segment_index: integer
+        ingested_at: timestamp
+    raw_macro_observations:
+      +column_types:
+        observation_date: date
+        value: double
+        ingested_at: timestamp
+    raw_options_activity:
+      +column_types:
+        strike: double
+        expiration: date
+        day_volume: bigint
+        open_interest: bigint
+        volume_oi_ratio: double
+        implied_volatility: double
+        detected_at: timestamp
+    raw_sentiment_mentions:
+      +column_types:
+        score: integer
+        num_comments: integer
+        created_at: timestamp
+        ingested_at: timestamp
+    raw_companies:
+      +column_types:
+        cik: varchar
+    raw_fundamentals:
+      +column_types:
+        fiscal_year: integer
+        fiscal_quarter: integer
+        period_end_date: date
+        revenue: double
+        cost_of_revenue: double
+        net_income: double
+        total_assets: double
+        total_liabilities: double
+        total_equity: double
+        total_debt: double
+        shares_outstanding: double
+        close_price: double

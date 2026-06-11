@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      Raw landing tables written by the Kafka -> warehouse sink. In dev these
+      are emulated by dbt seeds with identical names and contracts.
+    schema: raw
+    tables:
+      - name: raw_companies
+        description: Company dimension (ticker universe with sector tags).
+      - name: raw_filings
+        description: SEC EDGAR filings with parsed section text (at-least-once delivery).
+      - name: raw_fundamentals
+        description: Quarterly fundamentals per company (XBRL-derived).
+      - name: raw_macro_observations
+        description: FRED macro series observations (at-least-once delivery).
+      - name: raw_options_activity
+        description: Unusual options activity events from Polygon.
+      - name: raw_sentiment_mentions
+        description: Reddit posts exploded to one row per ticker mention.
+      - name: raw_transcript_segments
+        description: Earnings-call transcripts exploded to one row per speaker turn.

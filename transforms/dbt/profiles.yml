@@ -1,0 +1,19 @@
+# dbt connection profiles for EDGAR-X.
+#   dev  — local DuckDB file; zero-credential development and CI.
+#   prod — Snowflake via key-pair (JWT) authentication, configured from SNOWFLAKE_* env vars.
+edgar_x:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: .local/edgar_x.duckdb
+      threads: 4
+    prod:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT', '') }}"
+      user: "{{ env_var('SNOWFLAKE_USER', '') }}"
+      private_key_path: "{{ env_var('SNOWFLAKE_PRIVATE_KEY_PATH', '') }}"
+      database: "{{ env_var('SNOWFLAKE_DATABASE', 'EDGAR_X') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', '') }}"
+      schema: "{{ env_var('SNOWFLAKE_SCHEMA', 'RAW') }}"
+      threads: 4

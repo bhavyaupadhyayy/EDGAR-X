@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: int_financial_ratios
+    description: Financial ratios per company per fiscal quarter.
+    columns:
+      - name: fundamental_id
+        tests: [unique, not_null]
+      - name: pe_ratio
+        tests:
+          - financial_ratio_bounds:
+              arguments:
+                min_value: -1000
+                max_value: 1000
+      - name: debt_to_equity
+        tests:
+          - financial_ratio_bounds:
+              arguments:
+                min_value: 0
+                max_value: 20
+      - name: net_margin
+        tests:
+          - financial_ratio_bounds:
+              arguments:
+                min_value: -2
+                max_value: 1
+      - name: gross_margin
+        tests:
+          - financial_ratio_bounds:
+              arguments:
+                min_value: -1
+                max_value: 1
+
+  - name: int_filing_language_features
+    description: Language features per filing.
+    columns:
+      - name: accession_number
+        tests: [unique, not_null]
+      - name: risk_word_total
+        tests: [not_null]
+
+  - name: int_options_flow_daily
+    description: Daily options-flow aggregates per underlying.
+    columns:
+      - name: flow_id
+        tests: [unique, not_null]
+      - name: total_volume
+        tests: [not_null]
+
+  - name: int_sentiment_daily
+    description: Daily sentiment aggregates per ticker.
+    columns:
+      - name: sentiment_id
+        tests: [unique, not_null]
+      - name: mention_count
+        tests: [not_null]

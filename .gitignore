@@ -11,3 +11,11 @@ venv/
 .coverage
 .mypy_cache/
 .ruff_cache/
+*.egg-info/
+
+# dbt
+transforms/dbt/target/
+transforms/dbt/dbt_packages/
+transforms/dbt/.local/
+transforms/dbt/logs/
+.snowflake_keys/

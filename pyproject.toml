@@ -18,6 +18,7 @@ dependencies = [
     "asyncpraw>=7.7",
     "confluent-kafka[avro,schemaregistry]>=2.6",
     "fastavro>=1.9",
+    "snowflake-connector-python[pandas]>=3.12",
 ]
 
 [project.optional-dependencies]
@@ -47,7 +48,7 @@ namespaces = false
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 asyncio_mode = "auto"
-addopts = "--cov=ingestion.sources --cov=ingestion.kafka --cov=core --cov-report=term-missing --cov-fail-under=80"
+addopts = "--cov=ingestion.sources --cov=ingestion.kafka --cov=ingestion.sinks --cov=core --cov-report=term-missing --cov-fail-under=80"
 
 [tool.coverage.run]
 omit = ["ingestion/airflow/*"]

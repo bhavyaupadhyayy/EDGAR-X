@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: company_profile
+    description: One row per company with latest ratios and filing activity.
+    columns:
+      - name: ticker
+        tests: [unique, not_null]
+      - name: sector
+        tests: [not_null]
+      - name: pe_ratio
+        tests:
+          - financial_ratio_bounds:
+              arguments:
+                min_value: -1000
+                max_value: 1000
+
+  - name: filing_history
+    description: One row per filing with language features.
+    columns:
+      - name: accession_number
+        tests: [unique, not_null]
+      - name: ticker
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('company_profile')
+                field: ticker
+      - name: filing_date
+        tests: [not_null]
+
+  - name: signal_history
+    description: One row per ticker-day with combined signals.
+    columns:
+      - name: signal_id
+        tests: [unique, not_null]
+      - name: ticker
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('company_profile')
+                field: ticker
+      - name: composite_signal_score
+        tests:
+          - not_null
+          - financial_ratio_bounds:
+              arguments:
+                min_value: 0
+                max_value: 100
+
+  - name: sector_summary
+    description: One row per sector with aggregates.
+    columns:
+      - name: sector
+        tests: [unique, not_null]
+      - name: company_count
+        tests: [not_null]

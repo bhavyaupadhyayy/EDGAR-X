@@ -23,7 +23,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from core.config import get_settings
 from core.logging import get_logger
-from ingestion.sources.http_utils import AsyncRateLimiter, request_with_retry
+from ingestion.sources.http_utils import AsyncRateLimiter, IngestionError, request_with_retry
 
 logger = get_logger(__name__)
 
@@ -122,6 +122,101 @@ class FullTextSearchHit(BaseModel):
     form_type: str | None = None
     filing_date: date | None = None
     display_names: list[str] = Field(default_factory=list)
+
+
+class CompanyInfo(BaseModel):
+    """Company identity and SIC classification from the submissions API."""
+
+    model_config = ConfigDict(frozen=True)
+
+    ticker: str
+    cik: str
+    company_name: str
+    sic: str | None = None
+    sic_description: str | None = None
+
+
+#: SIC division ranges -> coarse sector label.
+_SIC_SECTORS: tuple[tuple[int, int, str], ...] = (
+    (100, 999, "Agriculture"),
+    (1000, 1499, "Mining & Energy"),
+    (1500, 1799, "Construction"),
+    (2000, 3999, "Manufacturing"),
+    (4000, 4999, "Transportation & Utilities"),
+    (5000, 5199, "Wholesale Trade"),
+    (5200, 5999, "Retail Trade"),
+    (6000, 6799, "Financials"),
+    (7000, 8999, "Services"),
+    (9100, 9999, "Public Administration"),
+)
+
+
+def sector_from_sic(sic: str | None) -> str:
+    """Map a SIC code to its coarse SIC-division sector label.
+
+    Args:
+        sic: Four-digit SIC code as reported by EDGAR (may be ``None``).
+
+    Returns:
+        The sector label, or ``"Unknown"`` when the code is missing/invalid.
+    """
+    try:
+        code = int(sic or "")
+    except ValueError:
+        return "Unknown"
+    for low, high, label in _SIC_SECTORS:
+        if low <= code <= high:
+            return label
+    return "Unknown"
+
+
+class CompanyFundamentals(BaseModel):
+    """Core fundamentals for one company's most recent annual (FY) period.
+
+    Field names match the ``raw_fundamentals`` landing-table contract read by
+    the dbt ``stg_fundamentals`` model. ``close_price`` is always ``None``
+    here — price comes from the market-data source, not EDGAR.
+    """
+
+    model_config = ConfigDict(frozen=True)
+
+    ticker: str
+    fiscal_year: int
+    fiscal_quarter: int = 4
+    period_end_date: date
+    revenue: float
+    cost_of_revenue: float | None = None
+    net_income: float | None = None
+    total_assets: float | None = None
+    total_liabilities: float | None = None
+    total_equity: float | None = None
+    total_debt: float | None = None
+    shares_outstanding: float | None = None
+    close_price: float | None = None
+
+    def to_raw_row(self) -> dict[str, Any]:
+        """Render this record as a dict matching the RAW_FUNDAMENTALS columns."""
+        return self.model_dump()
+
+
+#: us-gaap concept tags tried in order for each fundamentals field. XBRL tag
+#: usage varies by filer, so each field lists its common synonyms.
+_FUNDAMENTALS_CONCEPTS: dict[str, tuple[str, ...]] = {
+    "revenue": (
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "Revenues",
+        "SalesRevenueNet",
+    ),
+    "cost_of_revenue": ("CostOfGoodsAndServicesSold", "CostOfRevenue", "CostOfSales"),
+    "net_income": ("NetIncomeLoss",),
+    "total_assets": ("Assets",),
+    "total_liabilities": ("Liabilities",),
+    "total_equity": (
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+    ),
+    "total_debt": ("LongTermDebt", "LongTermDebtNoncurrent"),
+}
 
 
 class EdgarClient:
@@ -399,3 +494,139 @@ class EdgarClient:
             if len(body) >= _MIN_SECTION_LENGTH:
                 found["footnotes"] = body
         return FilingSections(**found)
+
+    async def get_company_info(self, ticker: str) -> CompanyInfo:
+        """Fetch company identity and SIC classification.
+
+        Args:
+            ticker: Exchange ticker symbol.
+
+        Returns:
+            Company info from the submissions API.
+
+        Raises:
+            KeyError: If the ticker is unknown to EDGAR.
+        """
+        cik, fallback_name = await self._resolve_ticker(ticker)
+        response = await self._request("GET", f"{self.DATA_BASE_URL}/submissions/CIK{cik}.json")
+        payload = response.json()
+        return CompanyInfo(
+            ticker=ticker.upper(),
+            cik=cik,
+            company_name=payload.get("name") or fallback_name,
+            sic=payload.get("sic") or None,
+            sic_description=payload.get("sicDescription") or None,
+        )
+
+    async def get_company_fundamentals(self, ticker: str) -> CompanyFundamentals:
+        """Fetch core fundamentals from the XBRL companyfacts API.
+
+        Extracts revenue, cost of revenue, net income, total assets, total
+        liabilities, stockholders' equity, long-term debt, and shares
+        outstanding for the most recent annual (10-K / FY) period. Each
+        concept is resolved independently to its latest annual fact, since
+        instant (balance sheet) and duration (income statement) facts carry
+        different period boundaries; the fiscal year and period end are
+        anchored to the revenue fact.
+
+        Args:
+            ticker: Exchange ticker symbol.
+
+        Returns:
+            The most recent annual fundamentals.
+
+        Raises:
+            KeyError: If the ticker is unknown to EDGAR.
+            IngestionError: If no annual revenue fact can be located.
+        """
+        cik, _company_name = await self._resolve_ticker(ticker)
+        url = f"{self.DATA_BASE_URL}/api/xbrl/companyfacts/CIK{cik}.json"
+        response = await self._request("GET", url)
+        facts = response.json().get("facts", {})
+        gaap = facts.get("us-gaap", {})
+
+        values: dict[str, float | None] = {}
+        anchor: dict[str, Any] | None = None
+        for field, concepts in _FUNDAMENTALS_CONCEPTS.items():
+            fact = self._latest_annual_fact(gaap, concepts, unit="USD")
+            values[field] = fact["val"] if fact is not None else None
+            if field == "revenue":
+                anchor = fact
+        if anchor is None or values["revenue"] is None:
+            raise IngestionError(f"no annual revenue fact in companyfacts for {ticker!r}")
+
+        shares_fact = self._latest_annual_fact(
+            facts.get("dei", {}),
+            ("EntityCommonStockSharesOutstanding",),
+            unit="shares",
+        ) or self._latest_annual_fact(
+            gaap, ("CommonStockSharesOutstanding",), unit="shares"
+        )
+
+        fundamentals = CompanyFundamentals(
+            ticker=ticker.upper(),
+            fiscal_year=int(anchor["fy"]),
+            period_end_date=date.fromisoformat(anchor["end"]),
+            revenue=float(values["revenue"]),
+            cost_of_revenue=values["cost_of_revenue"],
+            net_income=values["net_income"],
+            total_assets=values["total_assets"],
+            total_liabilities=values["total_liabilities"],
+            total_equity=values["total_equity"],
+            total_debt=values["total_debt"],
+            shares_outstanding=float(shares_fact["val"]) if shares_fact else None,
+        )
+        logger.info(
+            "edgar_fundamentals_fetched",
+            ticker=ticker,
+            fiscal_year=fundamentals.fiscal_year,
+            period_end=str(fundamentals.period_end_date),
+            missing=[k for k, v in fundamentals.model_dump().items() if v is None],
+        )
+        return fundamentals
+
+    @staticmethod
+    def _latest_annual_fact(
+        taxonomy: dict[str, Any],
+        concepts: tuple[str, ...],
+        *,
+        unit: str,
+    ) -> dict[str, Any] | None:
+        """Return the latest annual fact across all candidate concept tags.
+
+        A fact qualifies as annual when it was reported on a 10-K with fiscal
+        period ``FY``. All concepts are evaluated and the fact with the
+        greatest period end date wins (then filing date, so amended values
+        beat originals; then concept priority order). Filers switch tags over
+        time — e.g. NVIDIA moved from the contract-revenue tag back to
+        ``Revenues`` — so a stale fact under a higher-priority tag must never
+        shadow a current fact under a lower-priority one.
+
+        Args:
+            taxonomy: One taxonomy block of the companyfacts payload
+                (e.g. ``facts["us-gaap"]`` or ``facts["dei"]``).
+            concepts: Concept tags to consider, in priority order.
+            unit: Unit key inside the concept (``"USD"`` or ``"shares"``).
+
+        Returns:
+            The winning fact dict, or ``None`` if no concept has an annual fact.
+        """
+        best: dict[str, Any] | None = None
+        best_key: tuple[str, str, int] | None = None
+        for priority, concept in enumerate(concepts):
+            entries = taxonomy.get(concept, {}).get("units", {}).get(unit, [])
+            annual = [
+                entry
+                for entry in entries
+                if entry.get("form") == "10-K"
+                and entry.get("fp") == "FY"
+                and entry.get("val") is not None
+                and entry.get("fy") is not None
+            ]
+            if not annual:
+                continue
+            candidate = max(annual, key=lambda e: (e["end"], e.get("filed", "")))
+            key = (candidate["end"], candidate.get("filed", ""), -priority)
+            if best_key is None or key > best_key:
+                best, best_key = candidate, key
+        return best

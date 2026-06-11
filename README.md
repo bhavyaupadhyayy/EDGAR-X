@@ -11,7 +11,7 @@ dashboard.
 | Layer | Scope | Status |
 |---|---|---|
 | 1 | Ingestion infrastructure (clients, Kafka/Avro, DLQ, Airflow, compose) | ✅ Built |
-| 2 | dbt transformation layer | ⬜ Pending |
+| 2 | dbt transformation layer (7 staging, 4 intermediate, 4 marts, 61 tests) | ✅ Built |
 | 3 | ML models (XGBoost, Isolation Forest, Bayesian calibrator) | ⬜ Pending |
 | 4 | Agent architecture (Tier 1/2 + Fable 5 orchestrator) | ⬜ Pending |
 | 5 | Self-improvement loop | ⬜ Pending |
@@ -55,6 +55,18 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -e '.[dev]'
 pytest                          # 80% coverage gate enforced
 ruff check . && mypy ingestion core
+```
+
+### dbt (Layer 2)
+
+The `dev` target runs on a local DuckDB file with seed data emulating the
+raw landing tables; the `prod` target reads `SNOWFLAKE_*` env vars. Seeds
+are dev-only and cannot run against prod.
+
+```bash
+cd transforms/dbt
+dbt seed --profiles-dir .       # load dev raw tables (first time)
+dbt build --profiles-dir .      # run models + all 61 tests
 ```
 
 ## Conventions

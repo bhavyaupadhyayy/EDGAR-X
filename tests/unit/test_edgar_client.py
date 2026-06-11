@@ -16,6 +16,9 @@ TICKER_MAP = {
 }
 
 SUBMISSIONS = {
+    "name": "Apple Inc.",
+    "sic": "3571",
+    "sicDescription": "Electronic Computers",
     "filings": {
         "recent": {
             "accessionNumber": [
@@ -197,6 +200,31 @@ class TestFetchFiling:
         assert payload["filing_date"] == metadata.filing_date
         assert isinstance(payload["sections"], dict)
         assert all(isinstance(v, str) for v in payload["sections"].values())
+
+
+class TestGetCompanyInfo:
+    """Company identity and SIC classification."""
+
+    async def test_returns_sic_classification(self, respx_mock: respx.MockRouter) -> None:
+        _mock_ticker_map(respx_mock)
+        _mock_submissions(respx_mock)
+        async with EdgarClient() as client:
+            info = await client.get_company_info("aapl")
+        assert info.ticker == "AAPL"
+        assert info.cik == "0000320193"
+        assert info.company_name == "Apple Inc."
+        assert info.sic == "3571"
+        assert info.sic_description == "Electronic Computers"
+
+    def test_sector_from_sic_divisions(self) -> None:
+        from ingestion.sources.edgar_client import sector_from_sic
+
+        assert sector_from_sic("3571") == "Manufacturing"
+        assert sector_from_sic("5961") == "Retail Trade"
+        assert sector_from_sic("6022") == "Financials"
+        assert sector_from_sic("7372") == "Services"
+        assert sector_from_sic(None) == "Unknown"
+        assert sector_from_sic("not-a-code") == "Unknown"
 
 
 class TestFullTextSearch:

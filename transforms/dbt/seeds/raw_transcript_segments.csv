@@ -1,0 +1,9 @@
+url,ticker,company_name,fiscal_year,fiscal_quarter,segment_index,speaker,role,section,text,ingested_at
+https://www.fool.com/transcripts/aapl-q1-2026,AAPL,Apple Inc.,2026,1,1,Tim Cook,Chief Executive Officer,prepared_remarks,We set a March quarter revenue record with services growing double digits.,2026-05-02 22:00:00
+https://www.fool.com/transcripts/aapl-q1-2026,AAPL,Apple Inc.,2026,1,2,Luca Maestri,Chief Financial Officer,prepared_remarks,Gross margin was at the high end of our guidance range.,2026-05-02 22:00:00
+https://www.fool.com/transcripts/aapl-q1-2026,AAPL,Apple Inc.,2026,1,3,Analyst One,Big Bank,qa,Can you talk about the demand environment in China,2026-05-02 22:00:00
+https://www.fool.com/transcripts/aapl-q1-2026,AAPL,Apple Inc.,2026,1,4,Tim Cook,Chief Executive Officer,qa,China returned to growth in the quarter and we remain optimistic.,2026-05-02 22:00:00
+https://www.fool.com/transcripts/nvda-q1-2026,NVDA,NVIDIA Corp,2026,1,1,Jensen Huang,Chief Executive Officer,prepared_remarks,Demand for accelerated computing is incredible and we are supply constrained.,2026-05-29 22:00:00
+https://www.fool.com/transcripts/nvda-q1-2026,NVDA,NVIDIA Corp,2026,1,2,Colette Kress,Chief Financial Officer,prepared_remarks,Data center revenue reached another record this quarter.,2026-05-29 22:00:00
+https://www.fool.com/transcripts/nvda-q1-2026,NVDA,NVIDIA Corp,2026,1,3,Analyst Two,Research Firm,qa,How should we think about gross margin trajectory into next year,2026-05-29 22:00:00
+https://www.fool.com/transcripts/nvda-q1-2026,NVDA,NVIDIA Corp,2026,1,4,Colette Kress,Chief Financial Officer,qa,We expect margins to remain in the mid seventies range.,2026-05-29 22:00:00

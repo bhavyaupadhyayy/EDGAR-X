@@ -1,0 +1,90 @@
+version: 2
+
+models:
+  - name: stg_companies
+    description: Company dimension (ticker universe).
+    columns:
+      - name: ticker
+        tests: [unique, not_null]
+      - name: cik
+        tests: [not_null]
+      - name: sector
+        tests: [not_null]
+
+  - name: stg_filings
+    description: Deduplicated SEC filings.
+    columns:
+      - name: accession_number
+        tests: [unique, not_null]
+      - name: ticker
+        tests: [not_null]
+      - name: filing_date
+        tests: [not_null]
+      - name: form_type
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["10-K", "10-Q", "8-K", "DEF 14A", "S-1"]
+
+  - name: stg_fundamentals
+    description: Quarterly fundamentals per company.
+    columns:
+      - name: fundamental_id
+        tests: [unique, not_null]
+      - name: ticker
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_companies')
+                field: ticker
+      - name: revenue
+        tests: [not_null]
+
+  - name: stg_macro_observations
+    description: Deduplicated FRED macro observations.
+    columns:
+      - name: macro_observation_id
+        tests: [unique, not_null]
+      - name: value
+        tests: [not_null]
+      - name: series_id
+        tests:
+          - accepted_values:
+              arguments:
+                values: [FEDFUNDS, CPIAUCSL, UNRATE, GDP, DGS10, T10Y2Y]
+
+  - name: stg_options_activity
+    description: Unusual options activity events.
+    columns:
+      - name: activity_id
+        tests: [unique, not_null]
+      - name: volume_oi_ratio
+        tests: [not_null]
+      - name: contract_type
+        tests:
+          - accepted_values:
+              arguments:
+                values: [call, put]
+
+  - name: stg_sentiment_mentions
+    description: Deduplicated Reddit ticker mentions.
+    columns:
+      - name: mention_id
+        tests: [unique, not_null]
+      - name: subreddit
+        tests:
+          - accepted_values:
+              arguments:
+                values: [wallstreetbets, investing, stocks]
+
+  - name: stg_transcript_segments
+    description: Deduplicated transcript speaker turns.
+    columns:
+      - name: segment_id
+        tests: [unique, not_null]
+      - name: section
+        tests:
+          - accepted_values:
+              arguments:
+                values: [prepared_remarks, qa]

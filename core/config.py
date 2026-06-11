@@ -31,6 +31,13 @@ class Settings(BaseSettings):
         slack_webhook_url: Optional Slack webhook for pipeline alerting.
         anthropic_api_key: Anthropic API key (Layer 4 onward).
         daily_spend_cap_usd: Hard daily spend cap for LLM API usage.
+        snowflake_account: Snowflake account identifier.
+        snowflake_user: Snowflake user for key-pair (JWT) authentication.
+        snowflake_private_key_path: Path to the PKCS#8 private key (.p8).
+        snowflake_private_key_passphrase: Passphrase if the key is encrypted.
+        snowflake_database: Target database (default EDGAR_X).
+        snowflake_warehouse: Virtual warehouse for loads.
+        snowflake_raw_schema: Schema holding the raw landing tables.
     """
 
     model_config = SettingsConfigDict(
@@ -51,6 +58,13 @@ class Settings(BaseSettings):
     slack_webhook_url: str | None = None
     anthropic_api_key: str | None = None
     daily_spend_cap_usd: float = 50.0
+    snowflake_account: str | None = None
+    snowflake_user: str | None = None
+    snowflake_private_key_path: str | None = None
+    snowflake_private_key_passphrase: str | None = None
+    snowflake_database: str = "EDGAR_X"
+    snowflake_warehouse: str | None = None
+    snowflake_raw_schema: str = "RAW"
 
     def edgar_user_agent_is_placeholder(self) -> bool:
         """Return True when the EDGAR User-Agent still contains the placeholder contact."""

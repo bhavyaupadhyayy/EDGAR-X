@@ -1,0 +1,10 @@
+post_id,subreddit,ticker,title,score,num_comments,created_at,ingested_at
+p1001,wallstreetbets,NVDA,NVDA earnings play loaded up on calls,2400,512,2026-06-08 14:05:00,2026-06-08 15:00:00
+p1001,wallstreetbets,NVDA,NVDA earnings play loaded up on calls,2400,512,2026-06-08 14:05:00,2026-06-08 16:00:00
+p1002,wallstreetbets,AAPL,AAPL WWDC could move the stock,830,201,2026-06-08 16:40:00,2026-06-08 17:00:00
+p1003,stocks,AAPL,Is AAPL still a buy after the run,310,144,2026-06-09 10:12:00,2026-06-09 11:00:00
+p1004,investing,MSFT,MSFT capex is getting enormous thoughts,540,233,2026-06-09 12:30:00,2026-06-09 13:00:00
+p1005,wallstreetbets,NVDA,NVDA to 150 before July,1900,420,2026-06-09 13:45:00,2026-06-09 14:00:00
+p1006,stocks,JPM,JPM looks cheap on forward earnings,150,67,2026-06-09 15:20:00,2026-06-09 16:00:00
+p1007,investing,XOM,XOM dividend safety check,220,98,2026-06-09 17:05:00,2026-06-09 18:00:00
+p1008,wallstreetbets,AAPL,AAPL puts printing today,640,310,2026-06-09 18:25:00,2026-06-09 19:00:00
