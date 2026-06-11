@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "name": "OptionsUnusualActivity",
+  "namespace": "edgar_x.ingestion",
+  "doc": "An options contract flagged for unusual volume vs open interest.",
+  "fields": [
+    {"name": "underlying", "type": "string"},
+    {"name": "contract_ticker", "type": "string"},
+    {"name": "contract_type", "type": "string"},
+    {"name": "strike", "type": "double"},
+    {"name": "expiration", "type": {"type": "int", "logicalType": "date"}},
+    {"name": "day_volume", "type": "long"},
+    {"name": "open_interest", "type": "long"},
+    {"name": "volume_oi_ratio", "type": "double"},
+    {"name": "implied_volatility", "type": ["null", "double"], "default": null},
+    {"name": "detected_at", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+  ]
+}

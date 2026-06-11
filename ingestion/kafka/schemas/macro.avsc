@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "MacroObservation",
+  "namespace": "edgar_x.ingestion",
+  "doc": "A single observation of a FRED macro indicator series.",
+  "fields": [
+    {"name": "series_id", "type": "string"},
+    {"name": "observation_date", "type": {"type": "int", "logicalType": "date"}},
+    {"name": "value", "type": "double"},
+    {"name": "ingested_at", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "name": "Transcript",
+  "namespace": "edgar_x.ingestion",
+  "doc": "A parsed earnings-call transcript.",
+  "fields": [
+    {"name": "company_name", "type": "string"},
+    {"name": "ticker", "type": ["null", "string"], "default": null},
+    {"name": "quarter", "type": ["null", "int"], "default": null},
+    {"name": "fiscal_year", "type": ["null", "int"], "default": null},
+    {"name": "url", "type": "string"},
+    {
+      "name": "segments",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "TranscriptSegment",
+          "fields": [
+            {"name": "speaker", "type": "string"},
+            {"name": "role", "type": ["null", "string"], "default": null},
+            {"name": "section", "type": "string"},
+            {"name": "text", "type": "string"}
+          ]
+        }
+      },
+      "default": []
+    },
+    {"name": "ingested_at", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+  ]
+}

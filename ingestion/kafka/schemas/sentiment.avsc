@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "name": "SentimentPost",
+  "namespace": "edgar_x.ingestion",
+  "doc": "A social-media post with extracted ticker mentions.",
+  "fields": [
+    {"name": "post_id", "type": "string"},
+    {"name": "subreddit", "type": "string"},
+    {"name": "title", "type": "string"},
+    {"name": "body", "type": "string", "default": ""},
+    {"name": "score", "type": "int", "default": 0},
+    {"name": "num_comments", "type": "int", "default": 0},
+    {"name": "tickers", "type": {"type": "array", "items": "string"}, "default": []},
+    {"name": "created_at", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "ingested_at", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+  ]
+}

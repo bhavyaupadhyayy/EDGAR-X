@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "name": "Filing",
+  "namespace": "edgar_x.ingestion",
+  "doc": "A parsed SEC EDGAR filing.",
+  "fields": [
+    {"name": "accession_number", "type": "string"},
+    {"name": "cik", "type": "string"},
+    {"name": "ticker", "type": ["null", "string"], "default": null},
+    {"name": "company_name", "type": "string"},
+    {"name": "form_type", "type": "string"},
+    {"name": "filing_date", "type": {"type": "int", "logicalType": "date"}},
+    {"name": "document_url", "type": "string"},
+    {"name": "raw_text", "type": "string"},
+    {"name": "sections", "type": {"type": "map", "values": "string"}, "default": {}},
+    {"name": "ingested_at", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+  ]
+}
