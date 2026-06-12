@@ -20,8 +20,10 @@ transforms/dbt/.local/
 transforms/dbt/logs/
 .snowflake_keys/
 
-# ML artifacts
-ml/revenue_predictor/artifacts/
+# ML artifacts: keep the model card and metrics, ignore binaries
+ml/revenue_predictor/artifacts/*
+!ml/revenue_predictor/artifacts/MODEL_CARD.md
+!ml/revenue_predictor/artifacts/metrics.json
 .DS_Store
 .coverage
 .pytest_cache/

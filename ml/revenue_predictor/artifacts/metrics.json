@@ -1,0 +1,56 @@
+[
+  {
+    "model_name": "majority-class (always up)",
+    "accuracy": 0.8299776286353467,
+    "precision": 0.8299776286353467,
+    "recall": 1.0,
+    "f1": 0.9070904645476773,
+    "roc_auc": 0.5,
+    "confusion": [
+      [
+        0,
+        76
+      ],
+      [
+        0,
+        371
+      ]
+    ]
+  },
+  {
+    "model_name": "logistic regression",
+    "accuracy": 0.8344519015659956,
+    "precision": 0.8382687927107062,
+    "recall": 0.9919137466307277,
+    "f1": 0.908641975308642,
+    "roc_auc": 0.6074975173783516,
+    "confusion": [
+      [
+        5,
+        71
+      ],
+      [
+        3,
+        368
+      ]
+    ]
+  },
+  {
+    "model_name": "xgboost (tuned)",
+    "accuracy": 0.8299776286353467,
+    "precision": 0.8299776286353467,
+    "recall": 1.0,
+    "f1": 0.9070904645476773,
+    "roc_auc": 0.7262022981983259,
+    "confusion": [
+      [
+        0,
+        76
+      ],
+      [
+        0,
+        371
+      ]
+    ]
+  }
+]
