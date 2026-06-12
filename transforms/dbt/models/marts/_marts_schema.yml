@@ -57,3 +57,40 @@ models:
         tests: [unique, not_null]
       - name: company_count
         tests: [not_null]
+
+  - name: ml_training_set
+    description: >
+      Labelable company-fiscal-years for the revenue-direction model.
+      Label = 1 if FY(N+1) revenue exceeds FY(N) revenue.
+    columns:
+      - name: ml_row_id
+        tests: [unique, not_null]
+      - name: label
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+      - name: ticker
+        tests: [not_null]
+      - name: fiscal_year
+        tests: [not_null]
+      - name: sector
+        tests: [not_null]
+      - name: revenue
+        tests: [not_null]
+      - name: fed_funds_rate
+        tests: [not_null]
+      - name: yield_curve_spread
+        tests: [not_null]
+
+  - name: ml_inference_set
+    description: Most recent fiscal year per company; label pending, inference only.
+    columns:
+      - name: ml_row_id
+        tests: [unique, not_null]
+      - name: ticker
+        tests: [not_null]
+      - name: revenue
+        tests: [not_null]

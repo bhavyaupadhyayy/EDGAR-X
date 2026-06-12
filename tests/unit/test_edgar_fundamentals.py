@@ -154,6 +154,73 @@ class TestGetFundamentalsHistory:
         async with EdgarClient() as client:
             assert await client.get_fundamentals_history("AAPL") == []
 
+    async def test_negative_magnitude_fact_rejected(
+        self, respx_mock: respx.MockRouter
+    ) -> None:
+        """Regression: DuPont FY2019 10-K tagged LongTermDebt as -$15.6B.
+
+        A negative restatement of a non-negative-by-definition field must not
+        displace the valid original; with no valid fact at all, the field is
+        NULL rather than negative.
+        """
+        facts = {
+            "facts": {
+                "us-gaap": {
+                    "Revenues": _usd_concept(
+                        [_annual_period(
+                            "2018-01-01", "2018-12-31", 85_977_000_000, 2018, "2019-02-11"
+                        )]
+                    ),
+                    "LongTermDebt": _usd_concept(
+                        [
+                            _annual("2018-12-31", 38_299_000_000, 2018, filed="2019-02-11"),
+                            _annual("2018-12-31", -12_635_000_000, 2019, filed="2020-02-14"),
+                        ]
+                    ),
+                },
+                "dei": {},
+            }
+        }
+        _mock_endpoints(respx_mock, facts)
+        async with EdgarClient() as client:
+            history = await client.get_fundamentals_history("AAPL")
+        assert history[0].total_debt == 38_299_000_000
+
+    async def test_priority_tag_beats_later_filed_synonym_for_same_period(
+        self, respx_mock: respx.MockRouter
+    ) -> None:
+        """Regression: REIT minor-line tag shadowing total revenue.
+
+        AvalonBay-style filers tag both ``Revenues`` (total, ~$2.3B) and
+        ``RealEstateRevenueNet`` (a minor line, ~$3.6M) for the same period.
+        The minor tag appearing in a later-filed 10-K must not win.
+        """
+        facts = {
+            "facts": {
+                "us-gaap": {
+                    "Revenues": _usd_concept(
+                        [_annual_period(
+                            "2018-01-01", "2018-12-31", 2_285_000_000, 2018, "2019-02-22"
+                        )]
+                    ),
+                    "RealEstateRevenueNet": _usd_concept(
+                        [_annual_period("2018-01-01", "2018-12-31", 3_572_000, 2020, "2021-02-24")]
+                    ),
+                    "NetIncomeLoss": _usd_concept(
+                        [_annual_period(
+                            "2018-01-01", "2018-12-31", 974_525_000, 2018, "2019-02-22"
+                        )]
+                    ),
+                },
+                "dei": {},
+            }
+        }
+        _mock_endpoints(respx_mock, facts)
+        async with EdgarClient() as client:
+            history = await client.get_fundamentals_history("AAPL")
+        assert len(history) == 1
+        assert history[0].revenue == 2_285_000_000
+
 
 class TestGetCompanyFundamentals:
     """Extraction of the most recent annual period from companyfacts."""

@@ -19,3 +19,6 @@ transforms/dbt/dbt_packages/
 transforms/dbt/.local/
 transforms/dbt/logs/
 .snowflake_keys/
+
+# ML artifacts
+ml/revenue_predictor/artifacts/

@@ -181,6 +181,17 @@ def _default_connection() -> ConnectionLike:
     )
 
 
+def open_connection() -> ConnectionLike:
+    """Open a key-pair-authenticated Snowflake connection from settings.
+
+    Public entry point for read-side consumers (e.g. ML feature loading).
+
+    Raises:
+        ConfigurationError: If required SNOWFLAKE_* settings are missing.
+    """
+    return _default_connection()
+
+
 def _default_write_pandas(conn: ConnectionLike, df: Any, **kwargs: Any) -> tuple[bool, int, int]:
     """Call the real ``write_pandas`` helper (deferred heavy import)."""
     from snowflake.connector.pandas_tools import write_pandas  # noqa: PLC0415

@@ -10,6 +10,7 @@ with fundamentals as (
 select
     fundamental_id,
     ticker,
+    companies.sector,
     fiscal_year,
     fiscal_quarter,
     period_end_date,
@@ -28,3 +29,4 @@ select
         when total_equity > 0 then net_income * 4 / total_equity
     end                                                       as roe_annualised
 from fundamentals
+left join {{ ref('stg_companies') }} as companies using (ticker)

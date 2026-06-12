@@ -207,8 +207,13 @@ _FUNDAMENTALS_CONCEPTS: dict[str, tuple[str, ...]] = {
         "Revenues",
         "SalesRevenueNet",
         "RevenueFromContractWithCustomerIncludingAssessedTax",
-        # REITs frequently report only real-estate revenue concepts.
+        # REITs frequently report only real-estate / lease revenue concepts
+        # (ASC 842 lease income is outside ASC 606 contract revenue). These
+        # are components, so the max_value rule keeps them subordinate to a
+        # total-revenue tag whenever one exists for the same period.
         "RealEstateRevenueNet",
+        "OperatingLeaseLeaseIncome",
+        "OperatingLeasesIncomeStatementLeaseRevenue",
     ),
     "cost_of_revenue": ("CostOfGoodsAndServicesSold", "CostOfRevenue", "CostOfSales"),
     "net_income": ("NetIncomeLoss",),
@@ -560,15 +565,10 @@ class EdgarClient:
         )
 
     async def get_company_fundamentals(self, ticker: str) -> CompanyFundamentals:
-        """Fetch core fundamentals from the XBRL companyfacts API.
+        """Fetch core fundamentals for the most recent annual (FY) period.
 
-        Extracts revenue, cost of revenue, net income, total assets, total
-        liabilities, stockholders' equity, long-term debt, and shares
-        outstanding for the most recent annual (10-K / FY) period. Each
-        concept is resolved independently to its latest annual fact, since
-        instant (balance sheet) and duration (income statement) facts carry
-        different period boundaries; the fiscal year and period end are
-        anchored to the revenue fact.
+        Thin wrapper over :meth:`get_fundamentals_history` so single-period
+        and historical extraction share one set of tag-resolution semantics.
 
         Args:
             ticker: Exchange ticker symbol.
@@ -580,51 +580,10 @@ class EdgarClient:
             KeyError: If the ticker is unknown to EDGAR.
             IngestionError: If no annual revenue fact can be located.
         """
-        cik, _company_name = await self._resolve_ticker(ticker)
-        url = f"{self.DATA_BASE_URL}/api/xbrl/companyfacts/CIK{cik}.json"
-        response = await self._request("GET", url)
-        facts = response.json().get("facts", {})
-        gaap = facts.get("us-gaap", {})
-
-        values: dict[str, float | None] = {}
-        anchor: dict[str, Any] | None = None
-        for field, concepts in _FUNDAMENTALS_CONCEPTS.items():
-            fact = self._latest_annual_fact(gaap, concepts, unit="USD")
-            values[field] = fact["val"] if fact is not None else None
-            if field == "revenue":
-                anchor = fact
-        if anchor is None or values["revenue"] is None:
+        history = await self.get_fundamentals_history(ticker)
+        if not history:
             raise IngestionError(f"no annual revenue fact in companyfacts for {ticker!r}")
-
-        shares_fact = self._latest_annual_fact(
-            facts.get("dei", {}),
-            ("EntityCommonStockSharesOutstanding",),
-            unit="shares",
-        ) or self._latest_annual_fact(
-            gaap, ("CommonStockSharesOutstanding",), unit="shares"
-        )
-
-        fundamentals = CompanyFundamentals(
-            ticker=ticker.upper(),
-            fiscal_year=int(anchor["fy"]),
-            period_end_date=date.fromisoformat(anchor["end"]),
-            revenue=float(values["revenue"]),
-            cost_of_revenue=values["cost_of_revenue"],
-            net_income=values["net_income"],
-            total_assets=values["total_assets"],
-            total_liabilities=values["total_liabilities"],
-            total_equity=values["total_equity"],
-            total_debt=values["total_debt"],
-            shares_outstanding=float(shares_fact["val"]) if shares_fact else None,
-        )
-        logger.info(
-            "edgar_fundamentals_fetched",
-            ticker=ticker,
-            fiscal_year=fundamentals.fiscal_year,
-            period_end=str(fundamentals.period_end_date),
-            missing=[k for k, v in fundamentals.model_dump().items() if v is None],
-        )
-        return fundamentals
+        return history[-1]
 
     async def get_fundamentals_history(self, ticker: str) -> list[CompanyFundamentals]:
         """Fetch annual fundamentals for every available fiscal year.
@@ -657,13 +616,27 @@ class EdgarClient:
         gaap = facts.get("us-gaap", {})
 
         series: dict[str, dict[str, dict[str, Any]]] = {
-            field: self._collect_annual_series(gaap, concepts, unit="USD")
+            field: self._collect_annual_series(
+                gaap,
+                concepts,
+                unit="USD",
+                # Revenue tags are components of total revenue (REITs tag
+                # ASC 606 contract revenue separately from lease revenue),
+                # so the largest candidate per period is the total.
+                prefer="max_value" if field == "revenue" else "priority",
+                # Net income and equity are legitimately negative; the other
+                # fields are magnitudes and a negative fact is a filer error.
+                non_negative=field not in ("net_income", "total_equity"),
+            )
             for field, concepts in _FUNDAMENTALS_CONCEPTS.items()
         }
         shares_series = self._collect_annual_series(
-            facts.get("dei", {}), ("EntityCommonStockSharesOutstanding",), unit="shares"
+            facts.get("dei", {}),
+            ("EntityCommonStockSharesOutstanding",),
+            unit="shares",
+            non_negative=True,
         ) or self._collect_annual_series(
-            gaap, ("CommonStockSharesOutstanding",), unit="shares"
+            gaap, ("CommonStockSharesOutstanding",), unit="shares", non_negative=True
         )
         shares_by_year = {
             date.fromisoformat(end).year: fact
@@ -714,82 +687,69 @@ class EdgarClient:
         concepts: tuple[str, ...],
         *,
         unit: str,
+        prefer: str = "priority",
+        non_negative: bool = False,
     ) -> dict[str, dict[str, Any]]:
         """Collect annual facts across concept tags, keyed by period end date.
 
         Facts qualify when reported on a 10-K with fiscal period ``FY``.
         Duration facts shorter than ~10 months are excluded (10-Ks carry
-        quarterly comparatives under ``FY`` too). Per period end, the
-        latest-filed fact wins, breaking ties by concept priority.
+        quarterly comparatives under ``FY`` too).
+
+        Within one concept, the latest-filed fact per period end wins, so
+        restatements beat originals. Across concepts for the same period end,
+        the winner depends on ``prefer``:
+
+        * ``"priority"`` — first concept in the list wins (balance-sheet and
+          income items, where tags are synonyms).
+        * ``"max_value"`` — the largest value wins. Used for revenue, where
+          tags are COMPONENTS, not synonyms: a REIT's ASC 606 contract
+          revenue legitimately excludes lease revenue and can be a thousandth
+          of total ``Revenues`` for the same period. No tag ordering is
+          universally correct, but a component can never exceed the total.
 
         Args:
             taxonomy: One taxonomy block of the companyfacts payload.
             concepts: Concept tags to consider, in priority order.
             unit: Unit key inside the concept (``"USD"`` or ``"shares"``).
+            prefer: Cross-concept winner rule (``"priority"``/``"max_value"``).
+            non_negative: Reject facts with negative values. Used for fields
+                that are non-negative by definition (debt, assets, revenue):
+                filers occasionally restate them with sign errors — DuPont's
+                FY2019 10-K tagged LongTermDebt as -$15.6B — and a bogus
+                restatement must not displace a valid original.
 
         Returns:
             Mapping of ISO period-end date to the winning fact dict.
         """
-        best: dict[str, tuple[tuple[str, int], dict[str, Any]]] = {}
+        best: dict[str, tuple[tuple[float, str] | tuple[int, str], dict[str, Any]]] = {}
         for priority, concept in enumerate(concepts):
+            per_end: dict[str, dict[str, Any]] = {}
             for entry in taxonomy.get(concept, {}).get("units", {}).get(unit, []):
                 if entry.get("form") != "10-K" or entry.get("fp") != "FY":
                     continue
                 if entry.get("val") is None or not entry.get("end"):
+                    continue
+                if non_negative and float(entry["val"]) < 0:
                     continue
                 start = entry.get("start")
                 if start is not None:
                     duration = date.fromisoformat(entry["end"]) - date.fromisoformat(start)
                     if duration.days < 300:
                         continue
-                key = (entry.get("filed", ""), -priority)
                 end = entry["end"]
+                if (
+                    end not in per_end
+                    or entry.get("filed", "") > per_end[end].get("filed", "")
+                ):
+                    per_end[end] = entry
+            for end, entry in per_end.items():
+                key: tuple[float, str] | tuple[int, str]
+                if prefer == "max_value":
+                    key = (float(entry["val"]), entry.get("filed", ""))
+                else:
+                    key = (-priority, entry.get("filed", ""))
                 if end not in best or key > best[end][0]:
                     best[end] = (key, entry)
         return {end: fact for end, (_key, fact) in best.items()}
 
-    @staticmethod
-    def _latest_annual_fact(
-        taxonomy: dict[str, Any],
-        concepts: tuple[str, ...],
-        *,
-        unit: str,
-    ) -> dict[str, Any] | None:
-        """Return the latest annual fact across all candidate concept tags.
-
-        A fact qualifies as annual when it was reported on a 10-K with fiscal
-        period ``FY``. All concepts are evaluated and the fact with the
-        greatest period end date wins (then filing date, so amended values
-        beat originals; then concept priority order). Filers switch tags over
-        time — e.g. NVIDIA moved from the contract-revenue tag back to
-        ``Revenues`` — so a stale fact under a higher-priority tag must never
-        shadow a current fact under a lower-priority one.
-
-        Args:
-            taxonomy: One taxonomy block of the companyfacts payload
-                (e.g. ``facts["us-gaap"]`` or ``facts["dei"]``).
-            concepts: Concept tags to consider, in priority order.
-            unit: Unit key inside the concept (``"USD"`` or ``"shares"``).
-
-        Returns:
-            The winning fact dict, or ``None`` if no concept has an annual fact.
-        """
-        best: dict[str, Any] | None = None
-        best_key: tuple[str, str, int] | None = None
-        for priority, concept in enumerate(concepts):
-            entries = taxonomy.get(concept, {}).get("units", {}).get(unit, [])
-            annual = [
-                entry
-                for entry in entries
-                if entry.get("form") == "10-K"
-                and entry.get("fp") == "FY"
-                and entry.get("val") is not None
-                and entry.get("fy") is not None
-            ]
-            if not annual:
-                continue
-            candidate = max(annual, key=lambda e: (e["end"], e.get("filed", "")))
-            key = (candidate["end"], candidate.get("filed", ""), -priority)
-            if best_key is None or key > best_key:
-                best, best_key = candidate, key
-        return best

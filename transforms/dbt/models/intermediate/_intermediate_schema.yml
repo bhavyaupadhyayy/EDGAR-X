@@ -21,18 +21,28 @@ models:
               arguments:
                 min_value: 0
                 max_value: 1000
+      # Margin bounds are scoped to non-Financials: bank/insurer revenue is
+      # not captured by the XBRL revenue concepts we extract, so their
+      # margins are not meaningful (same reason Financials are excluded from
+      # the ML training set). Bounds reflect real observed extremes: COVID-era
+      # cruise lines reached net margins near -7 and one-time gains (eBay
+      # FY2021 Adevinta) push net margin above 1.
       - name: net_margin
         tests:
           - financial_ratio_bounds:
               arguments:
-                min_value: -2
-                max_value: 1
+                min_value: -20
+                max_value: 3
+              config:
+                where: "sector is null or sector != 'Financials'"
       - name: gross_margin
         tests:
           - financial_ratio_bounds:
               arguments:
-                min_value: -1
+                min_value: -5
                 max_value: 1
+              config:
+                where: "sector is null or sector != 'Financials'"
 
   - name: int_filing_language_features
     description: Language features per filing.
