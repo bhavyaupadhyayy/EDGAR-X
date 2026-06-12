@@ -29,3 +29,6 @@ ml/revenue_predictor/artifacts/*
 .pytest_cache/
 .ruff_cache/
 *.egg-info/
+
+# Agent layer
+agents/cost_log.jsonl

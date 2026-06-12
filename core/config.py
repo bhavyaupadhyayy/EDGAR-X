@@ -58,6 +58,7 @@ class Settings(BaseSettings):
     slack_webhook_url: str | None = None
     anthropic_api_key: str | None = None
     daily_spend_cap_usd: float = 50.0
+    agent_spend_cap_usd: float = 5.0
     snowflake_account: str | None = None
     snowflake_user: str | None = None
     snowflake_private_key_path: str | None = None
