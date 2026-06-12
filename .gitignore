@@ -22,3 +22,8 @@ transforms/dbt/logs/
 
 # ML artifacts
 ml/revenue_predictor/artifacts/
+.DS_Store
+.coverage
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
