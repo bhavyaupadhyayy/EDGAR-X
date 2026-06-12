@@ -67,6 +67,94 @@ def _mock_endpoints(respx_mock: respx.MockRouter, facts: dict[str, Any]) -> None
     respx_mock.get(COMPANYFACTS_URL).respond(200, json=facts)
 
 
+def _annual_period(
+    start: str, end: str, val: float, fy: int, filed: str
+) -> dict[str, Any]:
+    return {
+        "start": start, "end": end, "val": val, "fy": fy,
+        "fp": "FY", "form": "10-K", "filed": filed,
+    }
+
+
+HISTORY_FACTS = {
+    "facts": {
+        "us-gaap": {
+            "Revenues": _usd_concept(
+                [
+                    # FY2024 as originally reported in the FY2024 10-K.
+                    _annual_period("2023-10-01", "2024-09-28", 380_000_000_000, 2024, "2024-11-01"),
+                    # FY2024 restated as a comparative in the FY2025 10-K
+                    # (note fy=2025): the later-filed value must win.
+                    _annual_period("2023-10-01", "2024-09-28", 381_000_000_000, 2025, "2025-11-01"),
+                    # FY2025 primary fact.
+                    _annual_period("2024-09-29", "2025-09-27", 416_000_000_000, 2025, "2025-11-01"),
+                    # A quarterly comparative carried under fp=FY: too short,
+                    # must be filtered out, not treated as a fiscal year.
+                    _annual_period("2025-06-29", "2025-09-27", 102_000_000_000, 2025, "2025-11-01"),
+                ]
+            ),
+            "Assets": _usd_concept(
+                [
+                    _annual("2024-09-28", 364_980_000_000, 2024, filed="2024-11-01"),
+                    _annual("2025-09-27", 344_085_000_000, 2025, filed="2025-11-01"),
+                ]
+            ),
+        },
+        "dei": {
+            "EntityCommonStockSharesOutstanding": {
+                "units": {
+                    "shares": [
+                        _annual("2024-10-18", 15_115_823_000, 2024, filed="2024-11-01"),
+                        _annual("2025-10-17", 15_022_073_000, 2025, filed="2025-11-01"),
+                    ]
+                }
+            }
+        },
+    }
+}
+
+
+class TestGetFundamentalsHistory:
+    """Multi-year extraction keyed by period end date."""
+
+    async def test_one_row_per_fiscal_year(self, respx_mock: respx.MockRouter) -> None:
+        _mock_endpoints(respx_mock, HISTORY_FACTS)
+        async with EdgarClient() as client:
+            history = await client.get_fundamentals_history("AAPL")
+        assert [h.fiscal_year for h in history] == [2024, 2025]
+        assert history[0].period_end_date == date(2024, 9, 28)
+        assert history[1].period_end_date == date(2025, 9, 27)
+
+    async def test_restated_comparative_wins(self, respx_mock: respx.MockRouter) -> None:
+        _mock_endpoints(respx_mock, HISTORY_FACTS)
+        async with EdgarClient() as client:
+            history = await client.get_fundamentals_history("AAPL")
+        # FY2024 revenue must be the restated value from the later filing.
+        assert history[0].revenue == 381_000_000_000
+
+    async def test_short_duration_facts_filtered(self, respx_mock: respx.MockRouter) -> None:
+        _mock_endpoints(respx_mock, HISTORY_FACTS)
+        async with EdgarClient() as client:
+            history = await client.get_fundamentals_history("AAPL")
+        assert all(h.revenue > 300_000_000_000 for h in history)
+
+    async def test_balance_sheet_and_shares_matched_per_year(
+        self, respx_mock: respx.MockRouter
+    ) -> None:
+        _mock_endpoints(respx_mock, HISTORY_FACTS)
+        async with EdgarClient() as client:
+            history = await client.get_fundamentals_history("AAPL")
+        assert history[0].total_assets == 364_980_000_000
+        assert history[1].total_assets == 344_085_000_000
+        assert history[0].shares_outstanding == 15_115_823_000
+        assert history[1].shares_outstanding == 15_022_073_000
+
+    async def test_no_revenue_returns_empty(self, respx_mock: respx.MockRouter) -> None:
+        _mock_endpoints(respx_mock, {"facts": {"us-gaap": {}, "dei": {}}})
+        async with EdgarClient() as client:
+            assert await client.get_fundamentals_history("AAPL") == []
+
+
 class TestGetCompanyFundamentals:
     """Extraction of the most recent annual period from companyfacts."""
 

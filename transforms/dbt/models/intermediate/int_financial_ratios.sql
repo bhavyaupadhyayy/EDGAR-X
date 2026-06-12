@@ -16,9 +16,15 @@ select
     close_price * shares_outstanding                          as market_cap,
     (revenue - cost_of_revenue) / nullif(revenue, 0)          as gross_margin,
     net_income / nullif(revenue, 0)                           as net_margin,
-    total_debt / nullif(total_equity, 0)                      as debt_to_equity,
+    -- Leverage/return-on-equity ratios are meaningless when equity is zero
+    -- or negative (buyback-driven negative equity: MCD, SBUX, ABBV, ...).
+    case
+        when total_equity > 0 then total_debt / total_equity
+    end                                                       as debt_to_equity,
     total_liabilities / nullif(total_assets, 0)               as liabilities_to_assets,
     (close_price * shares_outstanding)
         / nullif(net_income * 4, 0)                           as pe_ratio,
-    net_income * 4 / nullif(total_equity, 0)                  as roe_annualised
+    case
+        when total_equity > 0 then net_income * 4 / total_equity
+    end                                                       as roe_annualised
 from fundamentals

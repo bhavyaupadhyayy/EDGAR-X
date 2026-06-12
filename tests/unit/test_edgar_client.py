@@ -202,6 +202,70 @@ class TestFetchFiling:
         assert all(isinstance(v, str) for v in payload["sections"].values())
 
 
+class TestArchivedSubmissionPages:
+    """High-volume filers overflow the 'recent' window into archive pages."""
+
+    SUBMISSIONS_WITH_ARCHIVE = {
+        "filings": {
+            "recent": {
+                "accessionNumber": ["0000320193-26-000010"],
+                "form": ["10-K"],
+                "filingDate": ["2026-05-01"],
+                "primaryDocument": ["aapl-10k-2026.htm"],
+            },
+            "files": [
+                {
+                    "name": "CIK0000320193-submissions-001.json",
+                    "filingFrom": "2015-01-01",
+                    "filingTo": "2023-03-29",
+                    "filingCount": 1619,
+                }
+            ],
+        }
+    }
+
+    ARCHIVE_PAGE = {
+        "accessionNumber": ["0000320193-20-000096", "0000320193-19-000119"],
+        "form": ["10-K", "10-K"],
+        "filingDate": ["2020-10-30", "2019-10-31"],
+        "primaryDocument": ["aapl-10k-2020.htm", "aapl-10k-2019.htm"],
+    }
+
+    async def test_archive_pages_fetched_for_old_start_date(
+        self, respx_mock: respx.MockRouter
+    ) -> None:
+        _mock_ticker_map(respx_mock)
+        respx_mock.get("https://data.sec.gov/submissions/CIK0000320193.json").respond(
+            200, json=self.SUBMISSIONS_WITH_ARCHIVE
+        )
+        archive_route = respx_mock.get(
+            "https://data.sec.gov/submissions/CIK0000320193-submissions-001.json"
+        ).respond(200, json=self.ARCHIVE_PAGE)
+        async with EdgarClient() as client:
+            filings = await client.get_filings(
+                "AAPL", form_types=("10-K",), start_date=date(2019, 1, 1)
+            )
+        assert archive_route.call_count == 1
+        assert [f.filing_date.year for f in filings] == [2026, 2020, 2019]
+
+    async def test_archive_skipped_when_window_is_recent(
+        self, respx_mock: respx.MockRouter
+    ) -> None:
+        _mock_ticker_map(respx_mock)
+        respx_mock.get("https://data.sec.gov/submissions/CIK0000320193.json").respond(
+            200, json=self.SUBMISSIONS_WITH_ARCHIVE
+        )
+        archive_route = respx_mock.get(
+            "https://data.sec.gov/submissions/CIK0000320193-submissions-001.json"
+        ).respond(200, json=self.ARCHIVE_PAGE)
+        async with EdgarClient() as client:
+            filings = await client.get_filings(
+                "AAPL", form_types=("10-K",), start_date=date(2025, 1, 1)
+            )
+        assert archive_route.call_count == 0
+        assert len(filings) == 1
+
+
 class TestGetCompanyInfo:
     """Company identity and SIC classification."""
 

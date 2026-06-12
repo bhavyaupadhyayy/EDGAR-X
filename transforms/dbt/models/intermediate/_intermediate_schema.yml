@@ -14,10 +14,13 @@ models:
                 max_value: 1000
       - name: debt_to_equity
         tests:
+          # Sanity ceiling catches unit/scale errors only. Real near-zero-
+          # equity balance sheets (post-spin-off ALLE: d/e 65; buyback-heavy
+          # ABBV: d/e 20+) legitimately exceed tight business-rule bounds.
           - financial_ratio_bounds:
               arguments:
                 min_value: 0
-                max_value: 20
+                max_value: 1000
       - name: net_margin
         tests:
           - financial_ratio_bounds:

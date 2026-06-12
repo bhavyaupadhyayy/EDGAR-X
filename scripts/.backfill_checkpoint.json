@@ -1,0 +1,2999 @@
+{
+ "done": {
+  "MMM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 8,
+   "sections_parsed": 8
+  },
+  "AOS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ABT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 8,
+   "sections_parsed": 8
+  },
+  "ABBV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "ACN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 3,
+   "sections_parsed": 3
+  },
+  "ADBE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 8,
+   "sections_parsed": 8
+  },
+  "AMD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "AES": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AFL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "A": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "APD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ABNB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 7,
+   "RAW_FILINGS": 4,
+   "sections_parsed": 4
+  },
+  "AKAM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 11,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 7
+  },
+  "ALB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ALGN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ALLE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LNT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ALL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "ARE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GOOGL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 13,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GOOG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 13,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AMZN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AMCR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 7
+  },
+  "AEE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AEP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AXP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 13,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AIG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AMT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AWK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AMP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AME": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AMGN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "APH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ADI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AON": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "APO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 6,
+   "RAW_FILINGS": 4,
+   "sections_parsed": 4
+  },
+  "AAPL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AMAT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "APP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 7,
+   "RAW_FILINGS": 5,
+   "sections_parsed": 5
+  },
+  "APTV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ACGL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ADM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ARES": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ANET": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AJG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AIZ": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "T": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ATO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ADSK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ADP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AZO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AVB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AVY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AXON": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BKR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 11,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "BALL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BAC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BAX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BDX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BRK-B": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BBY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TECH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BIIB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BLK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 4,
+   "RAW_FILINGS": 2,
+   "sections_parsed": 2
+  },
+  "BX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "XYZ": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 12,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BNY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BKNG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BSX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BMY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "AVGO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 8,
+   "sections_parsed": 8
+  },
+  "BR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BRO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BF-B": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BLDR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "BG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 5,
+   "RAW_FILINGS": 3,
+   "sections_parsed": 3
+  },
+  "BXP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CHRW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CDNS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CPT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CPB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "COF": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CAH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 0
+  },
+  "CCL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CARR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 6,
+   "sections_parsed": 6
+  },
+  "CVNA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 11,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "CASY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CAT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CBOE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CBRE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CDW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "COR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CNC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CNP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CF": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CRL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SCHW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CHTR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CVX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CMG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CHD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 1
+  },
+  "CIEN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 8,
+   "sections_parsed": 8
+  },
+  "CINF": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CTAS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CSCO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "C": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 0
+  },
+  "CFG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CLX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CME": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CMS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CTSH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "COHR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "COIN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 7,
+   "RAW_FILINGS": 5,
+   "sections_parsed": 5
+  },
+  "CL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CMCSA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FIX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CAG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "COP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ED": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "STZ": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CEG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 6,
+   "RAW_FILINGS": 5,
+   "sections_parsed": 5
+  },
+  "COO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CPRT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GLW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CPAY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CTVA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 7
+  },
+  "CSGP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "COST": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 3
+  },
+  "CRH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 5,
+   "RAW_FILINGS": 3,
+   "sections_parsed": 3
+  },
+  "CRWD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 7
+  },
+  "CCI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CSX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CMI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CVS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DHR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DRI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DDOG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 7
+  },
+  "DVA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DECK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DELL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 12,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DAL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DVN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DXCM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FANG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DLR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DLTR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "D": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DPZ": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DASH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 6,
+   "sections_parsed": 6
+  },
+  "DOV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DOW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 7
+  },
+  "DHI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DTE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DUK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 11,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "ETN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EBAY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SATS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ECL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EIX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 0
+  },
+  "EW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ELV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EME": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EMR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ETR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EOG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EQT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EFX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EQIX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EQR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 13,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ERIE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ESS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EVRG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 8,
+   "sections_parsed": 8
+  },
+  "ES": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EXC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EXE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EXPE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 1
+  },
+  "EXPD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "EXR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "XOM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FFIV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FDS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FICO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FAST": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FRT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FDX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FIS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FITB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FSLR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FISV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "F": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FTNT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FTV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 12,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FOXA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 5
+  },
+  "FOX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 5
+  },
+  "BEN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "FCX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GRMN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 0
+  },
+  "GEHC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 5,
+   "RAW_FILINGS": 4,
+   "sections_parsed": 4
+  },
+  "GEV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 4,
+   "RAW_FILINGS": 2,
+   "sections_parsed": 2
+  },
+  "GEN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GNRC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GIS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GPC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GILD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GPN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GDDY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HAL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HIG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HAS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HCA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DOC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HSIC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HSY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HPE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 13,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HLT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HON": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 4
+  },
+  "HRL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HST": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HWM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HPQ": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HUBB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HUM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HBAN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HII": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IBM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IEX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IDXX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ITW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "INCY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 11,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "PODD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "INTC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IBKR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ICE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IFF": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "INTU": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ISRG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IVZ": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "INVH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IQV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "IRM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "JBHT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "JBL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "JKHY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "J": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "JNJ": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "JCI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "JPM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KVUE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 4,
+   "RAW_FILINGS": 3,
+   "sections_parsed": 3
+  },
+  "KDP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KEY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 12,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KEYS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 13,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KMB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KIM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KMI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KKR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KLAC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KHC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "KR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LHX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LRCX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LVS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LDOS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LEN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LII": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LLY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LIN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "LYV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LMT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "L": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LOW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LULU": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LITE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 13,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LYB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MTB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MPC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MAR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MRSH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MLM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MAS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MKC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MCD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 3
+  },
+  "MCK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MDT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 13,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MRK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "META": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MET": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MTD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MGM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MCHP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MU": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MSFT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MAA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MRNA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 8,
+   "sections_parsed": 8
+  },
+  "TAP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MDLZ": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MPWR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MNST": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MCO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 1
+  },
+  "MOS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MSI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "MSCI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NDAQ": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NTAP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 11,
+   "sections_parsed": 1
+  },
+  "NFLX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NEM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NWSA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NWS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NEE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NKE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NDSN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NSC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NTRS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NOC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NCLH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NRG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NUE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NVDA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NVR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NXPI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 7
+  },
+  "ORLY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "OXY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ODFL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "OMC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ON": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "OKE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ORCL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "OTIS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 6,
+   "sections_parsed": 6
+  },
+  "PCAR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PKG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PLTR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 6,
+   "sections_parsed": 6
+  },
+  "PANW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PSKY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 2,
+   "RAW_FILINGS": 1,
+   "sections_parsed": 1
+  },
+  "PH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PAYX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 6
+  },
+  "PYPL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 13,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PNR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PEP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PFE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PCG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PSX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PNW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PNC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "POOL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PPG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PPL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PFG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PGR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PLD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PRU": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PEG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PTC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PSA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PHM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "PWR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "QCOM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DGX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "Q": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 3,
+   "RAW_FILINGS": 1,
+   "sections_parsed": 1
+  },
+  "RL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "RJF": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "RTX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "O": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "REG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "REGN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "RF": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 6,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "RSG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "RMD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 8
+  },
+  "RVTY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "HOOD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 7,
+   "RAW_FILINGS": 5,
+   "sections_parsed": 5
+  },
+  "ROK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ROL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ROP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ROST": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "RCL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SPGI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "CRM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SNDK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 3,
+   "RAW_FILINGS": 1,
+   "sections_parsed": 1
+  },
+  "SBAC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SLB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "STX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SRE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "NOW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SHW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SPG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SWKS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SJM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 11,
+   "sections_parsed": 11
+  },
+  "SW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 4,
+   "RAW_FILINGS": 2,
+   "sections_parsed": 2
+  },
+  "SNA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SOLV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 4,
+   "RAW_FILINGS": 2,
+   "sections_parsed": 2
+  },
+  "SO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "LUV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SWK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SBUX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "STT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "STLD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "STE": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 8,
+   "sections_parsed": 8
+  },
+  "SYK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SMCI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "SNPS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "SYY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 13,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TMUS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TROW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TTWO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TPR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TRGP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TGT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TEL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TDY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TER": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TSLA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 8
+  },
+  "TXN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TPL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 6,
+   "sections_parsed": 6
+  },
+  "TXT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TMO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TJX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TKO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 5,
+   "RAW_FILINGS": 3,
+   "sections_parsed": 3
+  },
+  "TTD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TSCO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TDG": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TRV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TRMB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TYL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "TSN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "USB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 11,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "UBER": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 7
+  },
+  "UDR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ULTA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "UNP": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 8
+  },
+  "UAL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "UPS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "URI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "UNH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "UHS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "VLO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "VEEV": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "VTR": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "VLTO": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 5,
+   "RAW_FILINGS": 3,
+   "sections_parsed": 3
+  },
+  "VRSN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "VRSK": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 10,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "VZ": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "VRTX": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "VRT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 8,
+   "sections_parsed": 8
+  },
+  "VTRS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 8,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 6
+  },
+  "VICI": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "V": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "VST": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 9,
+   "sections_parsed": 9
+  },
+  "VMC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WRB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "GWW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WAB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WMT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "DIS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 7,
+   "sections_parsed": 7
+  },
+  "WBD": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WAT": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WEC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WFC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 4,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WELL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WST": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WDC": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 9,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WSM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WMB": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WTW": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WDAY": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 16,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "WYNN": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "XEL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 12,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "XYL": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 17,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "YUM": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 19,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ZBRA": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 18,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ZBH": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 14,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  },
+  "ZTS": {
+   "RAW_COMPANIES": 1,
+   "RAW_FUNDAMENTALS": 15,
+   "RAW_FILINGS": 10,
+   "sections_parsed": 10
+  }
+ },
+ "dropped": {
+  "APA": "only 0 annual fundamentals year(s)",
+  "FDXF": "only 0 annual fundamentals year(s)",
+  "GS": "only 0 annual fundamentals year(s)",
+  "SYF": "only 0 annual fundamentals year(s)",
+  "TFC": "only 0 annual fundamentals year(s)"
+ }
+}

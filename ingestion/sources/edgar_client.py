@@ -206,6 +206,9 @@ _FUNDAMENTALS_CONCEPTS: dict[str, tuple[str, ...]] = {
         "RevenueFromContractWithCustomerExcludingAssessedTax",
         "Revenues",
         "SalesRevenueNet",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        # REITs frequently report only real-estate revenue concepts.
+        "RealEstateRevenueNet",
     ),
     "cost_of_revenue": ("CostOfGoodsAndServicesSold", "CostOfRevenue", "CostOfSales"),
     "net_income": ("NetIncomeLoss",),
@@ -346,41 +349,65 @@ class EdgarClient:
         cik, company_name = await self._resolve_ticker(ticker)
         url = f"{self.DATA_BASE_URL}/submissions/CIK{cik}.json"
         response = await self._request("GET", url)
-        recent = response.json().get("filings", {}).get("recent", {})
-        rows = zip(
-            recent.get("accessionNumber", []),
-            recent.get("form", []),
-            recent.get("filingDate", []),
-            recent.get("primaryDocument", []),
-            strict=True,
-        )
-        results: list[FilingMetadata] = []
-        for accession, form, filing_date_raw, primary_doc in rows:
-            if form not in form_types:
-                continue
-            filing_date = date.fromisoformat(filing_date_raw)
-            if start_date is not None and filing_date < start_date:
-                continue
-            if end_date is not None and filing_date > end_date:
-                continue
-            accession_nodash = accession.replace("-", "")
-            results.append(
-                FilingMetadata(
-                    accession_number=accession,
-                    cik=cik,
-                    ticker=ticker.upper(),
-                    company_name=company_name,
-                    form_type=form,
-                    filing_date=filing_date,
-                    primary_document=primary_doc,
-                    document_url=(
-                        f"{self.ARCHIVES_BASE_URL}/Archives/edgar/data/"
-                        f"{int(cik)}/{accession_nodash}/{primary_doc}"
-                    ),
+        payload = response.json()
+        filings_block = payload.get("filings", {})
+        batches: list[dict[str, Any]] = [filings_block.get("recent", {})]
+
+        # The "recent" window holds only the latest ~1000 filings; for
+        # high-volume filers that can span under 3 years. Older filings live
+        # in paginated archive files — fetch those whose date range overlaps
+        # the requested window.
+        if start_date is not None:
+            for archive in filings_block.get("files", []):
+                filing_to = archive.get("filingTo")
+                if filing_to and date.fromisoformat(filing_to) < start_date:
+                    continue
+                if end_date is not None:
+                    filing_from = archive.get("filingFrom")
+                    if filing_from and date.fromisoformat(filing_from) > end_date:
+                        continue
+                archive_response = await self._request(
+                    "GET", f"{self.DATA_BASE_URL}/submissions/{archive['name']}"
                 )
+                batches.append(archive_response.json())
+
+        results: list[FilingMetadata] = []
+        for batch in batches:
+            rows = zip(
+                batch.get("accessionNumber", []),
+                batch.get("form", []),
+                batch.get("filingDate", []),
+                batch.get("primaryDocument", []),
+                strict=True,
             )
-            if limit is not None and len(results) >= limit:
-                break
+            for accession, form, filing_date_raw, primary_doc in rows:
+                if form not in form_types:
+                    continue
+                filing_date = date.fromisoformat(filing_date_raw)
+                if start_date is not None and filing_date < start_date:
+                    continue
+                if end_date is not None and filing_date > end_date:
+                    continue
+                accession_nodash = accession.replace("-", "")
+                results.append(
+                    FilingMetadata(
+                        accession_number=accession,
+                        cik=cik,
+                        ticker=ticker.upper(),
+                        company_name=company_name,
+                        form_type=form,
+                        filing_date=filing_date,
+                        primary_document=primary_doc,
+                        document_url=(
+                            f"{self.ARCHIVES_BASE_URL}/Archives/edgar/data/"
+                            f"{int(cik)}/{accession_nodash}/{primary_doc}"
+                        ),
+                    )
+                )
+
+        results.sort(key=lambda metadata: metadata.filing_date, reverse=True)
+        if limit is not None:
+            results = results[:limit]
         logger.info("edgar_filings_listed", ticker=ticker, count=len(results))
         return results
 
@@ -495,6 +522,20 @@ class EdgarClient:
                 found["footnotes"] = body
         return FilingSections(**found)
 
+    async def resolve_ticker(self, ticker: str) -> tuple[str, str]:
+        """Resolve a ticker to its zero-padded CIK and EDGAR company title.
+
+        Args:
+            ticker: Exchange ticker symbol, case-insensitive.
+
+        Returns:
+            Tuple of (10-digit zero-padded CIK, company title).
+
+        Raises:
+            KeyError: If the ticker is unknown to EDGAR.
+        """
+        return await self._resolve_ticker(ticker)
+
     async def get_company_info(self, ticker: str) -> CompanyInfo:
         """Fetch company identity and SIC classification.
 
@@ -584,6 +625,128 @@ class EdgarClient:
             missing=[k for k, v in fundamentals.model_dump().items() if v is None],
         )
         return fundamentals
+
+    async def get_fundamentals_history(self, ticker: str) -> list[CompanyFundamentals]:
+        """Fetch annual fundamentals for every available fiscal year.
+
+        Periods are keyed by their END date, not the report's ``fy`` field:
+        each 10-K restates prior years as comparatives under its own ``fy``,
+        so grouping by ``fy`` would collapse distinct periods. For each period
+        end the latest-filed fact wins (restatements beat originals). The
+        fiscal-year label is the calendar year of the period end, matching
+        filer convention (AAPL FY2025 ends 2025-09; NVDA FY2026 ends 2026-01).
+
+        Only years with a revenue fact are returned; other fields are matched
+        to the same period end and may be ``None``. Shares outstanding (a
+        cover-page fact with its own date) is matched by calendar year.
+
+        Args:
+            ticker: Exchange ticker symbol.
+
+        Returns:
+            One :class:`CompanyFundamentals` per fiscal year, oldest first.
+            Empty if the company has no annual revenue facts.
+
+        Raises:
+            KeyError: If the ticker is unknown to EDGAR.
+        """
+        cik, _company_name = await self._resolve_ticker(ticker)
+        url = f"{self.DATA_BASE_URL}/api/xbrl/companyfacts/CIK{cik}.json"
+        response = await self._request("GET", url)
+        facts = response.json().get("facts", {})
+        gaap = facts.get("us-gaap", {})
+
+        series: dict[str, dict[str, dict[str, Any]]] = {
+            field: self._collect_annual_series(gaap, concepts, unit="USD")
+            for field, concepts in _FUNDAMENTALS_CONCEPTS.items()
+        }
+        shares_series = self._collect_annual_series(
+            facts.get("dei", {}), ("EntityCommonStockSharesOutstanding",), unit="shares"
+        ) or self._collect_annual_series(
+            gaap, ("CommonStockSharesOutstanding",), unit="shares"
+        )
+        shares_by_year = {
+            date.fromisoformat(end).year: fact
+            for end, fact in sorted(shares_series.items())
+        }
+
+        # One period per fiscal-year label; the latest end within a year wins
+        # (guards against 52/53-week quirks and fiscal-calendar changes).
+        period_by_year: dict[int, str] = {}
+        for end in sorted(series["revenue"]):
+            period_by_year[date.fromisoformat(end).year] = end
+
+        history: list[CompanyFundamentals] = []
+        for fiscal_year, end in sorted(period_by_year.items()):
+            def value_at(field: str, period_end: str = end) -> float | None:
+                fact = series[field].get(period_end)
+                return float(fact["val"]) if fact is not None else None
+
+            shares_fact = shares_by_year.get(fiscal_year)
+            history.append(
+                CompanyFundamentals(
+                    ticker=ticker.upper(),
+                    fiscal_year=fiscal_year,
+                    period_end_date=date.fromisoformat(end),
+                    revenue=float(series["revenue"][end]["val"]),
+                    cost_of_revenue=value_at("cost_of_revenue"),
+                    net_income=value_at("net_income"),
+                    total_assets=value_at("total_assets"),
+                    total_liabilities=value_at("total_liabilities"),
+                    total_equity=value_at("total_equity"),
+                    total_debt=value_at("total_debt"),
+                    shares_outstanding=float(shares_fact["val"]) if shares_fact else None,
+                )
+            )
+        logger.info(
+            "edgar_fundamentals_history_fetched",
+            ticker=ticker,
+            years=len(history),
+            span=(
+                f"{history[0].fiscal_year}-{history[-1].fiscal_year}" if history else None
+            ),
+        )
+        return history
+
+    @staticmethod
+    def _collect_annual_series(
+        taxonomy: dict[str, Any],
+        concepts: tuple[str, ...],
+        *,
+        unit: str,
+    ) -> dict[str, dict[str, Any]]:
+        """Collect annual facts across concept tags, keyed by period end date.
+
+        Facts qualify when reported on a 10-K with fiscal period ``FY``.
+        Duration facts shorter than ~10 months are excluded (10-Ks carry
+        quarterly comparatives under ``FY`` too). Per period end, the
+        latest-filed fact wins, breaking ties by concept priority.
+
+        Args:
+            taxonomy: One taxonomy block of the companyfacts payload.
+            concepts: Concept tags to consider, in priority order.
+            unit: Unit key inside the concept (``"USD"`` or ``"shares"``).
+
+        Returns:
+            Mapping of ISO period-end date to the winning fact dict.
+        """
+        best: dict[str, tuple[tuple[str, int], dict[str, Any]]] = {}
+        for priority, concept in enumerate(concepts):
+            for entry in taxonomy.get(concept, {}).get("units", {}).get(unit, []):
+                if entry.get("form") != "10-K" or entry.get("fp") != "FY":
+                    continue
+                if entry.get("val") is None or not entry.get("end"):
+                    continue
+                start = entry.get("start")
+                if start is not None:
+                    duration = date.fromisoformat(entry["end"]) - date.fromisoformat(start)
+                    if duration.days < 300:
+                        continue
+                key = (entry.get("filed", ""), -priority)
+                end = entry["end"]
+                if end not in best or key > best[end][0]:
+                    best[end] = (key, entry)
+        return {end: fact for end, (_key, fact) in best.items()}
 
     @staticmethod
     def _latest_annual_fact(

@@ -277,6 +277,29 @@ class SnowflakeWriter:
         self._conn().cursor().execute(f"truncate table if exists {self._qualified(table)}")
         logger.info("snowflake_table_truncated", table=table)
 
+    def delete_rows(self, table: str, *, column: str, value: str) -> None:
+        """Delete rows matching one column value (per-company idempotent loads).
+
+        The column name is validated against the table contract, so only the
+        value travels as a bind parameter.
+
+        Args:
+            table: RAW table name, e.g. ``"RAW_FILINGS"``.
+            column: Column to filter on, e.g. ``"TICKER"``.
+            value: Value whose rows are deleted.
+
+        Raises:
+            KeyError: If the table or column is not part of the RAW contract.
+        """
+        if table not in RAW_TABLE_SCHEMAS:
+            raise KeyError(f"unknown RAW table {table!r}")
+        if column.upper() not in RAW_TABLE_SCHEMAS[table]:
+            raise KeyError(f"column {column!r} not in {table}")
+        self._conn().cursor().execute(
+            f"delete from {self._qualified(table)} where {column.upper()} = %s",
+            (value,),
+        )
+
     def write_rows(self, table: str, rows: Sequence[Mapping[str, Any]]) -> int:
         """Bulk-insert rows into one RAW table via ``write_pandas``.
 

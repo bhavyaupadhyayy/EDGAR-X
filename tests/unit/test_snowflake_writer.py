@@ -17,12 +17,14 @@ SEED_DIR = Path(__file__).parents[2] / "transforms" / "dbt" / "seeds"
 
 @dataclass
 class FakeCursor:
-    """Records every executed statement."""
+    """Records every executed statement and its bind parameters."""
 
     statements: list[str] = field(default_factory=list)
+    params: list[tuple[Any, ...] | None] = field(default_factory=list)
 
-    def execute(self, sql: str) -> FakeCursor:
+    def execute(self, sql: str, parameters: tuple[Any, ...] | None = None) -> FakeCursor:
         self.statements.append(sql)
+        self.params.append(parameters)
         return self
 
 
@@ -175,6 +177,19 @@ class TestLifecycle:
     def test_truncate_unknown_table_rejected(self, writer: SnowflakeWriter) -> None:
         with pytest.raises(KeyError):
             writer.truncate_table("STAGING_SOMETHING")
+
+    def test_delete_rows_parameterised(
+        self, writer: SnowflakeWriter, fake_conn: FakeConnection
+    ) -> None:
+        writer.delete_rows("RAW_FILINGS", column="ticker", value="AAPL")
+        assert fake_conn.cursor_obj.statements == [
+            "delete from EDGAR_X.RAW.RAW_FILINGS where TICKER = %s"
+        ]
+        assert fake_conn.cursor_obj.params == [("AAPL",)]
+
+    def test_delete_rows_rejects_unknown_column(self, writer: SnowflakeWriter) -> None:
+        with pytest.raises(KeyError, match="not in RAW_FILINGS"):
+            writer.delete_rows("RAW_FILINGS", column="bogus; drop table", value="x")
 
     def test_injected_connection_not_closed(
         self, writer: SnowflakeWriter, fake_conn: FakeConnection
