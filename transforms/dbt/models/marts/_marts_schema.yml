@@ -94,3 +94,40 @@ models:
         tests: [not_null]
       - name: revenue
         tests: [not_null]
+
+  - name: prediction_outcomes
+    description: >
+      Each model prediction joined to its realized outcome. status='scored'
+      when FY(N+1) revenue is known, else 'pending'. data_split separates
+      in-sample 'train' (FY<=2023) from genuinely out-of-sample 'test'.
+    columns:
+      - name: prediction_id
+        tests: [unique, not_null]
+      - name: ticker
+        tests: [not_null]
+      - name: fiscal_year
+        tests: [not_null]
+      - name: predicted_direction
+        tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+      - name: actual_direction
+        tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [scored, pending]
+      - name: data_split
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [train, test, pending]

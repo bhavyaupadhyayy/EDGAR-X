@@ -21,3 +21,9 @@ sources:
         description: Reddit posts exploded to one row per ticker mention.
       - name: raw_transcript_segments
         description: Earnings-call transcripts exploded to one row per speaker turn.
+      - name: raw_model_predictions
+        description: >
+          DERIVED artifact (not ingested): XGBoost revenue-direction scores per
+          company-fiscal-year, materialized by self_improvement/score_predictions.py
+          so dbt can join predictions to realized outcomes. Lives in RAW only to
+          keep the source() pattern uniform.

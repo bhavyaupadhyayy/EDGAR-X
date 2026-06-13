@@ -1,0 +1,8 @@
+{
+  "trained_at": "2026-06-11",
+  "trained_through_fiscal_year": 2023,
+  "evaluated_through_fiscal_year": 2025,
+  "baseline_auc": 0.7262022981983259,
+  "baseline_accuracy": 0.8299776286353467,
+  "model_artifact": "xgboost_revenue_direction.json"
+}

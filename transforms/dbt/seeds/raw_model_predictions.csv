@@ -1,0 +1,10 @@
+ticker,fiscal_year,predicted_score,predicted_direction,model_artifact,scored_at
+AAPL,2025,0.9081,1,xgboost_revenue_direction.json,2026-06-12 20:00:00
+AAPL,2026,0.8742,1,xgboost_revenue_direction.json,2026-06-12 20:00:00
+MSFT,2025,0.7204,1,xgboost_revenue_direction.json,2026-06-12 20:00:00
+MSFT,2026,0.8013,1,xgboost_revenue_direction.json,2026-06-12 20:00:00
+NVDA,2025,0.6521,1,xgboost_revenue_direction.json,2026-06-12 20:00:00
+NVDA,2026,0.7110,1,xgboost_revenue_direction.json,2026-06-12 20:00:00
+XOM,2025,0.4133,0,xgboost_revenue_direction.json,2026-06-12 20:00:00
+XOM,2026,0.4480,0,xgboost_revenue_direction.json,2026-06-12 20:00:00
+JPM,2025,0.5500,1,xgboost_revenue_direction.json,2026-06-12 20:00:00

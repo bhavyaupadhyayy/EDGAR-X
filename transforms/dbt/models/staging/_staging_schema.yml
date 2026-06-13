@@ -88,3 +88,19 @@ models:
           - accepted_values:
               arguments:
                 values: [prepared_remarks, qa]
+
+  - name: stg_model_predictions
+    description: XGBoost revenue-direction scores per company-fiscal-year (derived).
+    columns:
+      - name: ticker
+        tests: [not_null]
+      - name: fiscal_year
+        tests: [not_null]
+      - name: predicted_score
+        tests: [not_null]
+      - name: predicted_direction
+        tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false

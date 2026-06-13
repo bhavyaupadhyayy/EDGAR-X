@@ -1,0 +1,252 @@
+{
+  "generated_at": "2026-06-13T19:52:22+00:00",
+  "reported_test_auc": 0.7262022981983259,
+  "reported_test_accuracy": 0.8299776286353467,
+  "majority_baseline_accuracy": 0.8299776286353467,
+  "total_scored": 6234,
+  "out_of_sample_n": 447,
+  "in_sample_n": 5787,
+  "out_of_sample_years": [
+    2024,
+    2025
+  ],
+  "out_of_sample_base_rate": 0.8299776286353467,
+  "out_of_sample": {
+    "n": 447,
+    "accuracy": 0.8299776286353467,
+    "ci_low": 0.7923759919090165,
+    "ci_high": 0.8619558177553976,
+    "small_sample": false
+  },
+  "realized_auc": 0.7262022981983259,
+  "in_sample_reference": {
+    "n": 5787,
+    "accuracy": 0.8126836011750476,
+    "ci_low": 0.8024247734069845,
+    "ci_high": 0.8225275651270207,
+    "small_sample": false
+  },
+  "deciles": [
+    {
+      "decile": 1,
+      "score_low": 0.5209,
+      "score_high": 0.5668,
+      "n": 4,
+      "mean_predicted_score": 0.5491,
+      "actual_growth_rate": 1.0,
+      "small_sample": true
+    },
+    {
+      "decile": 2,
+      "score_low": 0.5668,
+      "score_high": 0.6128,
+      "n": 6,
+      "mean_predicted_score": 0.5926,
+      "actual_growth_rate": 0.3333,
+      "small_sample": true
+    },
+    {
+      "decile": 3,
+      "score_low": 0.6128,
+      "score_high": 0.6587,
+      "n": 22,
+      "mean_predicted_score": 0.6355,
+      "actual_growth_rate": 0.5,
+      "small_sample": true
+    },
+    {
+      "decile": 4,
+      "score_low": 0.6587,
+      "score_high": 0.7046,
+      "n": 22,
+      "mean_predicted_score": 0.6818,
+      "actual_growth_rate": 0.6818,
+      "small_sample": true
+    },
+    {
+      "decile": 5,
+      "score_low": 0.7046,
+      "score_high": 0.7505,
+      "n": 38,
+      "mean_predicted_score": 0.7312,
+      "actual_growth_rate": 0.6579,
+      "small_sample": false
+    },
+    {
+      "decile": 6,
+      "score_low": 0.7505,
+      "score_high": 0.7965,
+      "n": 38,
+      "mean_predicted_score": 0.7735,
+      "actual_growth_rate": 0.7895,
+      "small_sample": false
+    },
+    {
+      "decile": 7,
+      "score_low": 0.7965,
+      "score_high": 0.8424,
+      "n": 42,
+      "mean_predicted_score": 0.8223,
+      "actual_growth_rate": 0.8333,
+      "small_sample": false
+    },
+    {
+      "decile": 8,
+      "score_low": 0.8424,
+      "score_high": 0.8883,
+      "n": 84,
+      "mean_predicted_score": 0.8687,
+      "actual_growth_rate": 0.8452,
+      "small_sample": false
+    },
+    {
+      "decile": 9,
+      "score_low": 0.8883,
+      "score_high": 0.9343,
+      "n": 114,
+      "mean_predicted_score": 0.9135,
+      "actual_growth_rate": 0.9211,
+      "small_sample": false
+    },
+    {
+      "decile": 10,
+      "score_low": 0.9343,
+      "score_high": 0.9802,
+      "n": 77,
+      "mean_predicted_score": 0.9518,
+      "actual_growth_rate": 0.9481,
+      "small_sample": false
+    }
+  ],
+  "by_fiscal_year": [
+    {
+      "group": "2024",
+      "stat": {
+        "n": 414,
+        "accuracy": 0.8236714975845411,
+        "ci_low": 0.7840330405996837,
+        "ci_high": 0.8573583383343429,
+        "small_sample": false
+      }
+    },
+    {
+      "group": "2025",
+      "stat": {
+        "n": 33,
+        "accuracy": 0.9090909090909091,
+        "ci_low": 0.7642705646564897,
+        "ci_high": 0.968596628950737,
+        "small_sample": false
+      }
+    }
+  ],
+  "by_sector": [
+    {
+      "group": "Communication Services",
+      "stat": {
+        "n": 24,
+        "accuracy": 0.75,
+        "ci_low": 0.5510017468789357,
+        "ci_high": 0.8800079652065766,
+        "small_sample": true
+      }
+    },
+    {
+      "group": "Consumer Discretionary",
+      "stat": {
+        "n": 58,
+        "accuracy": 0.8103448275862069,
+        "ci_low": 0.6914738161458368,
+        "ci_high": 0.8906585995743256,
+        "small_sample": false
+      }
+    },
+    {
+      "group": "Consumer Staples",
+      "stat": {
+        "n": 43,
+        "accuracy": 0.6744186046511628,
+        "ci_low": 0.5251593250655096,
+        "ci_high": 0.7950688481822019,
+        "small_sample": false
+      }
+    },
+    {
+      "group": "Energy",
+      "stat": {
+        "n": 20,
+        "accuracy": 0.5,
+        "ci_low": 0.2992949144298199,
+        "ci_high": 0.7007050855701801,
+        "small_sample": true
+      }
+    },
+    {
+      "group": "Health Care",
+      "stat": {
+        "n": 62,
+        "accuracy": 0.9032258064516129,
+        "ci_low": 0.8045095713255586,
+        "ci_high": 0.9548887422026668,
+        "small_sample": false
+      }
+    },
+    {
+      "group": "Industrials",
+      "stat": {
+        "n": 75,
+        "accuracy": 0.8133333333333334,
+        "ci_low": 0.7107120474561753,
+        "ci_high": 0.8854199437768794,
+        "small_sample": false
+      }
+    },
+    {
+      "group": "Information Technology",
+      "stat": {
+        "n": 80,
+        "accuracy": 0.925,
+        "ci_low": 0.8458779990261992,
+        "ci_high": 0.9651752251489122,
+        "small_sample": false
+      }
+    },
+    {
+      "group": "Materials",
+      "stat": {
+        "n": 26,
+        "accuracy": 0.8076923076923077,
+        "ci_low": 0.6212336384535001,
+        "ci_high": 0.9149306422821174,
+        "small_sample": true
+      }
+    },
+    {
+      "group": "Real Estate",
+      "stat": {
+        "n": 30,
+        "accuracy": 0.9,
+        "ci_low": 0.7437855868473339,
+        "ci_high": 0.9654007400402839,
+        "small_sample": false
+      }
+    },
+    {
+      "group": "Utilities",
+      "stat": {
+        "n": 29,
+        "accuracy": 0.9655172413793104,
+        "ci_low": 0.8282410893529976,
+        "ci_high": 0.9938869433859677,
+        "small_sample": true
+      }
+    }
+  ],
+  "warnings": [
+    "Out-of-sample evaluation rests on 447 rows across 2 fiscal year(s) (FY2024-FY2025). This is a SMALL sample; treat all figures as tentative.",
+    "These out-of-sample rows ARE the model's Layer-3 held-out test set, so realized metrics reproducing the reported metrics is expected — it is NOT independent validation. Independent validation requires a new fiscal year of realized outcomes (currently pending).",
+    "5787 in-sample (train) rows are EXCLUDED from all performance metrics; they appear only as a labeled reference and are not valid for measuring performance.",
+    "Class imbalance: 83% of out-of-sample companies grew revenue, so high accuracy is largely the base rate. Read ROC-AUC, not accuracy."
+  ],
+  "verdict": "On 447 out-of-sample rows (FY2024-FY2025), accuracy 83.0% (95% CI 79.2%-86.2%), realized ROC-AUC 0.726 (reported 0.726; matches because it is the same held-out set). The model ranks better than chance but the confidence interval is wide and only one-to-two fiscal years are observed — no claim of stability or decay is supportable yet. The framework will produce robust numbers as out-of-sample years accumulate."
+}
