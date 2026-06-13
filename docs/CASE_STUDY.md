@@ -76,7 +76,7 @@ The same investigation produced a second honest decision: banks and insurers sho
 - **Financials excluded** (~70 companies): their revenue is not captured by the XBRL concepts used. Every metric is for the *S&P 500 ex-Financials*.
 - **2 of 5 designed data streams carry real data** (EDGAR, FRED). Options flow, Reddit sentiment, and earnings-call transcripts are scaffolded at every hop (clients, Avro schemas, topics, empty warehouse tables) but intentionally unpopulated.
 - **The real data path is the backfill script, not streaming**: Kafka producers, Avro schemas, and Airflow DAGs exist and are unit-tested, but the Kafka→Snowflake sink is not wired and no scheduled DAG run has landed real data in the warehouse.
-- **Not deployed**: this is production-*quality* engineering (typed, tested, idempotent, observable) running on a laptop against a real warehouse — not a deployed, monitored production system. Layers 4–7 (agents, API, dashboard, cloud) are design only.
+- **Not deployed**: this is production-*quality* engineering (typed, tested, idempotent, observable) running on a laptop against a real warehouse — not a deployed, monitored production system. The Layer-4 agent tier is built and demonstrated on 5 companies ([docs/sample_memos/README.md](sample_memos/README.md)), but it runs on-demand from a laptop; Layers 5–7 (self-improvement, API, dashboard, cloud) are design only.
 - **Prediction time is the filing date**, not fiscal year end — macro features legitimately include the first ~2–3 months of FY N+1.
 - **Residual XBRL noise**: extraction is best-effort against a messy reality; bounds tests catch gross errors, not subtle ones, in both features and labels.
 
@@ -86,7 +86,7 @@ In intended order, none of it started:
 
 1. **Wire streaming to the warehouse** — connect the existing Kafka topics to a Snowflake sink and let the Airflow DAGs run real data on a schedule, replacing the one-shot backfill as the ongoing ingestion path.
 2. **The remaining data streams** — populate options flow, sentiment, and transcript pipelines; their staging models and tests already exist.
-3. **The agent tier (Layer 4)** — LLM agents for filing extraction, cross-filing comparison, and hypothesis generation over the warehouse, with cost controls designed in from the start.
+3. **Scaling the agent tier (Layer 4 is built)** — the agent tier exists: three source-attributed specialists, a Fable 5 orchestrator with code-side traceability verification, and an Opus 4.8 judge, demonstrated on 5 companies under hard spend caps ([docs/sample_memos/README.md](sample_memos/README.md)). What remains is scale: scheduled generation across the universe and completing the companies cut short by output-cap and billing interruptions.
 4. **Serving (Layer 6)** — FastAPI endpoints over the marts and the ranked screen, plus a dashboard.
 5. **Deployment (Layer 7)** — containerized services to cloud infrastructure with CI/CD and monitoring, at which point "production-quality" could honestly become "production."
 6. **Fixing survivorship bias** — backfilling *historical* index membership is the single highest-value data improvement: it would make the label distribution honest and the model evaluable on the companies that actually declined.

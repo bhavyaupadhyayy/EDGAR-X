@@ -11,17 +11,19 @@ EDGAR-X pulls 10-K filings and XBRL fundamentals for 498 current S&P 500 compani
 
 ## Built vs planned
 
-This repo is honest about its own state. Layers 1–3 are built; all real data was loaded through the checkpointed backfill path (source APIs → Snowflake directly). Layers 4–7 are designed (the original architecture targets an LLM agent tier and cloud deployment) but **not built**.
+This repo is honest about its own state. Layers 1–4 are built; all real data was loaded through the checkpointed backfill path (source APIs → Snowflake directly). Layers 5–7 (self-improvement, API/dashboard, cloud deployment) are designed but **not built**.
 
 | Layer | Scope | Status |
 |---|---|---|
 | 1 | Ingestion: async API clients + checkpointed backfill (the real data path); Kafka/Avro producers, DLQs, and Airflow DAGs built and unit-tested, but the Kafka→Snowflake sink is **not yet wired** | ✅ Built (see note) |
 | 2 | dbt transformations: 7 staging / 5 intermediate / 6 mart models, 75 tests, DuckDB dev + Snowflake prod targets | ✅ Built |
 | 3 | ML: S&P 500 backfill (ex-Financials), labeled training mart, XGBoost vs two baselines, SHAP, model card | ✅ Built |
-| 4 | LLM agent tier (extraction/comparison/hypothesis agents + orchestrator) | 📋 Planned, not built |
+| 4 | LLM agent tier: three attributed specialist agents (extraction / comparison / signal), a Claude Fable 5 orchestrator producing source-grounded memos with code-supplied provenance, and an LLM-as-judge evaluation harness (Claude Opus 4.8). Demonstrated on 5 companies across 3 sectors, avg judge scores 4.6/5/5/5 | ✅ Built |
 | 5 | Self-improvement loop (outcome tracking, model retraining triggers) | 📋 Planned, not built |
 | 6 | FastAPI service + Streamlit dashboard | 📋 Planned, not built |
 | 7 | Cloud deployment (Terraform/Kubernetes), CI/CD, monitoring | 📋 Planned, not built |
+
+Layer 4 demo evidence — generated memos, per-company judge reports, scores, and full cost accounting: [docs/sample_memos/README.md](docs/sample_memos/README.md).
 
 ## Architecture
 
@@ -48,8 +50,11 @@ flowchart LR
         XGB["XGBoost ranked screen<br/>AUC 0.726 vs 0.500 baseline"]
     end
 
-    subgraph planned["Layers 4–7 — designed, NOT built"]
-        AGENTS["LLM agent tier"]
+    subgraph agents_l4["Layer 4 — agent tier ✅"]
+        AGENTS["Fable 5 specialists +<br/>orchestrator memos +<br/>Opus 4.8 judge"]
+    end
+
+    subgraph planned["Layers 5–7 — designed, NOT built"]
         API["FastAPI + dashboard"]
         DEPLOY["Cloud deploy + CI/CD"]
     end
@@ -64,16 +69,17 @@ flowchart LR
     KAFKA -.-> AIRFLOW
     AIRFLOW -. "sink not yet wired" .-> RAW
     RAW --> DBT --> MLSET --> XGB
-    MLSET -.-> AGENTS
+    MLSET --> AGENTS
+    XGB --> AGENTS
     XGB -.-> API
     AGENTS -.-> API -.-> DEPLOY
 
     classDef live fill:#e8f5e9,stroke:#2e7d32
     classDef empty fill:#fafafa,stroke:#9e9e9e,stroke-dasharray:4 4
     classDef future fill:#f5f5f5,stroke:#bdbdbd,stroke-dasharray:6 4,color:#757575
-    class EDGAR,FRED,KAFKA,AIRFLOW,BACKFILL,RAW,DBT,MLSET,XGB live
+    class EDGAR,FRED,KAFKA,AIRFLOW,BACKFILL,RAW,DBT,MLSET,XGB,AGENTS live
     class OPT,SENT,TRAN empty
-    class AGENTS,API,DEPLOY,planned future
+    class API,DEPLOY,planned future
 ```
 
 Solid lines are the only path real data has taken: the checkpointed backfill script writes EDGAR + FRED to Snowflake directly. The Kafka producers, Avro schemas, and Airflow DAGs (dashed) are built and unit-tested, but the Kafka→Snowflake sink is not yet wired, and no scheduled DAG run has landed real data in the warehouse — streaming-to-warehouse is built in parts and planned for completion. Dashed boxes are scaffolded-but-empty streams and unbuilt layers.
@@ -140,7 +146,7 @@ cd ../.. && python -m ml.revenue_predictor.train
 
 ## Tech stack (only what's actually used)
 
-Python 3.11+ (httpx, asyncio, Pydantic v2) · Apache Kafka + Avro + Schema Registry · Apache Airflow · Snowflake (key-pair auth) + DuckDB dev target · dbt · XGBoost + Optuna + SHAP · Docker Compose · pytest + ruff
+Python 3.11+ (httpx, asyncio, Pydantic v2) · Apache Kafka + Avro + Schema Registry · Apache Airflow · Snowflake (key-pair auth) + DuckDB dev target · dbt · XGBoost + Optuna + SHAP · Anthropic SDK (Claude Fable 5 + Opus 4.8, prompt caching, hard spend caps) · Docker Compose · pytest + ruff
 
 ## Repository map
 
@@ -151,5 +157,7 @@ ml/           revenue-direction model: feature engineering, training, artifacts 
 scripts/      universe builder, checkpointed backfills
 tests/        124 unit tests (all external I/O mocked)
 docs/         engineering case study
-agents/ api/ dashboard/   placeholders for planned Layers 4-7 (not built)
+agents/       Layer-4 agent tier: cost-capped base agent, three attributed specialists,
+              orchestrator (source-grounded memos), LLM-as-judge evaluation
+api/ dashboard/   placeholders for planned Layers 5-7 (not built)
 ```
