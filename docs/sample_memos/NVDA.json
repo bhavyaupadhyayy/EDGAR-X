@@ -1,0 +1,314 @@
+{
+  "ticker": "NVDA",
+  "fiscal_year": 2026,
+  "generated_at": "2026-06-13T01:10:17+00:00",
+  "summary": "NVDA's FY2026 10-K reports 65% revenue growth to $215.9 billion, driven by Blackwell-led data center compute and networking, and the company-year ranks near the top of the XGBoost revenue-direction screen (score 0.9371), primarily on trailing revenue momentum and scale. However, the filing marks a decisive negative pivot on China — from constrained-but-growing in FY2025 to effective foreclosure from China's data center compute market, accompanied by a $4.5 billion H20 charge and a 3.9-point gross margin decline to 71.1%. New risk disclosures around customer concentration (22% and 14% direct customers), counterparty/financing exposure tied to large ecosystem investments (including $17.5B in private companies and a pending OpenAI partnership), energy and capital constraints on AI buildouts, and open-source model competition add forward-looking tension that the backward-looking model score cannot capture. The screen signal and qualitative disclosures are directionally consistent on realized growth, but the score should be read strictly as a relative ranking, with several model caveats (out-of-distribution feature values, survivorship bias) warranting moderated conviction.",
+  "findings": [
+    {
+      "finding": "FY2026 revenue grew 65% to $215.9 billion, driven by data center compute and networking platforms for accelerated computing and AI, with Blackwell architectures representing the majority of Data Center revenue.",
+      "source_agent": "extraction",
+      "source_attribution": "Revenue growth in fiscal year 2026 was driven by data center compute and networking platforms for accelerated computing and AI solutions. Our Blackwell architectures represented the majority of our Data Center revenue."
+    },
+    {
+      "finding": "The company-year ranks very high on the model's screen, but this is a relative ranking with moderate discriminative power, not a forecast that revenue will grow.",
+      "source_agent": "signal",
+      "source_attribution": "The model assigns a score of 0.9371, ranking this company-year very high on the screen; given an AUC of 0.726, this should be read as a strong relative ranking rather than a precise forecast that revenue will grow."
+    },
+    {
+      "finding": "The high screen score is most likely driven by trailing revenue momentum — the model's dominant feature — which aligns with the 65% growth disclosed in the MD&A; the score therefore largely reflects realized results rather than forward visibility.",
+      "source_agent": "signal",
+      "source_attribution": "Trailing one-year revenue growth of roughly 65% is the most likely primary driver of the high score, since revenue momentum dominates the model's feature importance."
+    },
+    {
+      "finding": "The China narrative deteriorated sharply year-over-year, shifting from growth in FY2025 to effective market foreclosure in FY2026 following the April 2025 H20 license requirement and $4.5B charge — a material structural negative not reflected in the momentum-driven model score.",
+      "source_agent": "comparison",
+      "source_attribution": "Current year: \"we were effectively foreclosed from competing in China's data center computing/compute market\"; prior year: \"Our Data Center revenue in China grew in fiscal year 2025.\""
+    },
+    {
+      "finding": "Gross margin compressed 3.9 points to 71.1%, attributable to the Hopper-to-Blackwell business model transition and the $4.5 billion H20 charge tied to US export license requirements for China.",
+      "source_agent": "extraction",
+      "source_attribution": "Gross margins decreased to 71.1% in fiscal year 2026 from 75.0% in fiscal year 2025 as our business model transitioned from offering Hopper HGX systems to Blackwell full-scale datacenter solutions"
+    },
+    {
+      "finding": "Revenue concentration is acute and rising in disclosure prominence: two direct customers represented 22% and 14% of total revenue, with management warning that losing large customers could harm results.",
+      "source_agent": "extraction",
+      "source_attribution": "For fiscal year 2026, sales to one direct customer represented 22% of total revenue and sales to another direct customer represented 14% of total revenue"
+    },
+    {
+      "finding": "FY2026 introduces a new standalone counterparty risk factor connected to the company's expanding ecosystem financing role, including financial guarantees and customer financing requests — a structural change to the risk profile versus FY2025.",
+      "source_agent": "comparison",
+      "source_attribution": "Commercial arrangements expose us to counterparty risk, including customers' or partners' inability to fulfill their financial commitments"
+    },
+    {
+      "finding": "A new driver/constraint emerges around large-scale ecosystem investments, including $17.5B deployed into private companies and infrastructure funds, alongside guarantees and a pending OpenAI partnership, deepening NVIDIA's financial entanglement with its own demand base.",
+      "source_agent": "comparison",
+      "source_attribution": "We invested $17.5 billion in private companies and infrastructure funds, primarily to support early‑stage startups."
+    },
+    {
+      "finding": "The filing newly flags external infrastructure constraints — availability of data centers, energy, and capital for customers' AI buildouts — as crucial to future revenue, meaning demand realization now depends on factors outside NVIDIA's control.",
+      "source_agent": "extraction",
+      "source_attribution": "The availability of data centers, energy, and capital to support the buildout of NVIDIA AI infrastructure by our customers and partners is crucial"
+    },
+    {
+      "finding": "A new competitive risk on open-source foundation models (e.g., DeepSeek, Qwen) is disclosed, with the potential to shift workloads to competitors' platforms and reduce demand.",
+      "source_agent": "comparison",
+      "source_attribution": "Open-source AI is dependent on developer adoption and if deployed on our competitors’ platforms, it could reduce demand for our products and services."
+    }
+  ],
+  "confidence": "moderate",
+  "confidence_rationale": "The extraction and comparison agents reported no data gaps and their evidence is internally consistent (e.g., the China foreclosure and H20 charge appear in both qualitative claims and year-over-year changes, and the model's revenue and gross margin metrics match the filing's disclosed figures). However, confidence is held to moderate because of material signal-agent caveats: the score is a ranked-screen output from a model with only moderate AUC (0.726); extreme feature values (65% revenue growth, ~3.05 annualised ROE) sit far from the training distribution where tree-based models can be less reliable; the training universe is survivorship-biased toward momentum names; the macro-regime feature value was unavailable; and features reflect only filing-date information, so the score cannot incorporate the substantial new forward-looking risks (China foreclosure, counterparty exposure, energy/capital constraints, open-source competition) that the qualitative agents surfaced. This creates genuine tension between the backward-looking quantitative signal and the deteriorating disclosed risk profile.",
+  "limitations": [
+    "XGBoost revenue-direction model used as a RANKED SCREEN (test ROC-AUC 0.726 vs 0.500 majority baseline, FY2024-25 holdout). It is NOT a calibrated classifier: at the default threshold it predicts the majority class for nearly all companies. Scores order companies by relative likelihood of revenue growth; they are not probabilities to act on.",
+    "Universe: current S&P 500 excluding Financials; training data carries survivorship bias that tilts the base rate positive.",
+    "All inputs are information available at the 10-K filing date only; nothing after the filing date is reflected.",
+    "Filing-language features cover ~56% of historical company-years; qualitative text analysis depends on best-effort section parsing.",
+    "This memo is generated by an LLM pipeline from the sources listed below. Verify against the cited filings before relying on any claim."
+  ],
+  "sources": [
+    "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (ticker=NVDA, fiscal_year=2025)",
+    "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (ticker=NVDA, fiscal_year=2026)",
+    "EDGAR_X.RAW.RAW_FILINGS accession 0001045810-25-000023 (10-K filed 2025-02-26, fields mdna_text / risk_factors_text)",
+    "EDGAR_X.RAW.RAW_FILINGS accession 0001045810-26-000021 (10-K filed 2026-02-25, fields mdna_text / risk_factors_text)",
+    "XGBoost revenue-direction model (xgboost_revenue_direction.json) scored on the FY2026 feature row from EDGAR_X.INTERMEDIATE.INT_ML_FEATURES"
+  ],
+  "traceability_warnings": [
+    "finding cites comparison but its attribution was not found in that agent's output: 'The China narrative deteriorated sharply year-over-year, shifting from growth in FY2025 to effective market foreclosure in FY2026 following the April 2025 H20 license requirement and $4.5B charge — a material structural negative not reflected in the momentum-driven model score.' (attribution: 'Current year: \"we were effectively foreclosed from competing in China\\'s data center computing/compute market\"; prior yea')"
+  ],
+  "extraction": {
+    "ticker": "NVDA",
+    "fiscal_year": 2026,
+    "accession_number": "0001045810-26-000021",
+    "sources": [
+      "EDGAR_X.RAW.RAW_FILINGS accession 0001045810-26-000021 (10-K filed 2026-02-25, fields mdna_text / risk_factors_text)"
+    ],
+    "claims": [
+      {
+        "claim": "FY2026 revenue grew 65% to $215.9 billion, driven primarily by data center compute and networking platforms for accelerated computing and AI, with Blackwell architectures representing the majority of Data Center revenue.",
+        "category": "business_driver",
+        "source_section": "mdna",
+        "source_quote": "Revenue growth in fiscal year 2026 was driven by data center compute and networking platforms for accelerated computing and AI solutions. Our Blackwell architectures represented the majority of our Data Center revenue."
+      },
+      {
+        "claim": "Data Center networking revenue grew 142% driven by the ramp of NVLink compute fabric for GB200/GB300 systems and growth of Ethernet and InfiniBand platforms.",
+        "category": "business_driver",
+        "source_section": "mdna",
+        "source_quote": "Revenue from Data Center networking grew 142% driven by the introduction and continued ramp of NVLink compute fabric for GB200 and GB300 systems"
+      },
+      {
+        "claim": "Gross margin fell 3.9 points to 71.1% due to the transition from Hopper HGX systems to Blackwell full-scale datacenter solutions and a $4.5 billion H20 charge tied to US export license requirements for China.",
+        "category": "business_driver",
+        "source_section": "mdna",
+        "source_quote": "Gross margins decreased to 71.1% in fiscal year 2026 from 75.0% in fiscal year 2025 as our business model transitioned from offering Hopper HGX systems to Blackwell full-scale datacenter solutions"
+      },
+      {
+        "claim": "Management expects supply constraints to be a headwind to Gaming in the first quarter of fiscal 2027 and beyond.",
+        "category": "forward_looking",
+        "source_section": "mdna",
+        "source_quote": "We expect supply constraints to be a headwind to Gaming in the first quarter of fiscal 2027 and beyond."
+      },
+      {
+        "claim": "The company expects to increase capital expenditures in fiscal year 2027 (versus $6.1 billion in FY2026) and is finalizing an investment and partnership agreement with OpenAI, though completion is not assured.",
+        "category": "forward_looking",
+        "source_section": "mdna",
+        "source_quote": "We expect to increase capital expenditures in fiscal year 2027 relative to fiscal year 2026 to support the future growth of our business."
+      },
+      {
+        "claim": "Revenue is highly concentrated: one direct customer represented 22% and another 14% of FY2026 total revenue, and losing or being prevented from selling to large customers could harm results.",
+        "category": "stated_risk",
+        "source_section": "risk_factors",
+        "source_quote": "For fiscal year 2026, sales to one direct customer represented 22% of total revenue and sales to another direct customer represented 14% of total revenue"
+      },
+      {
+        "claim": "US export controls have effectively foreclosed NVIDIA from China's data center compute market, helping competitors build ecosystems, with a material adverse impact unless approved products can return.",
+        "category": "stated_risk",
+        "source_section": "risk_factors",
+        "source_quote": "As of the end of fiscal year 2026, we were effectively foreclosed from competing in China's data center computing/compute market"
+      },
+      {
+        "claim": "Availability of data centers, energy, and capital for customers' AI infrastructure buildouts is crucial, and shortages could delay deployments and reduce the scale of AI adoption, impacting future revenue.",
+        "category": "stated_risk",
+        "source_section": "risk_factors",
+        "source_quote": "The availability of data centers, energy, and capital to support the buildout of NVIDIA AI infrastructure by our customers and partners is crucial"
+      },
+      {
+        "claim": "Long manufacturing lead times (at times over 12 months) combined with demand estimation errors have caused and could again cause supply-demand mismatches, excess inventory, and harm to financial results.",
+        "category": "stated_risk",
+        "source_section": "risk_factors",
+        "source_quote": "Significant mismatches between supply and demand have varied across our market platforms, resulted in both product shortages and excess inventory, significantly harmed our financial results and could reoccur."
+      }
+    ],
+    "data_gaps": []
+  },
+  "comparison": {
+    "ticker": "NVDA",
+    "current_fiscal_year": 2026,
+    "prior_fiscal_year": 2025,
+    "current_accession": "0001045810-26-000021",
+    "prior_accession": "0001045810-25-000023",
+    "sources": [
+      "EDGAR_X.RAW.RAW_FILINGS accession 0001045810-26-000021 (10-K filed 2026-02-25, fields mdna_text / risk_factors_text)",
+      "EDGAR_X.RAW.RAW_FILINGS accession 0001045810-25-000023 (10-K filed 2025-02-26, fields mdna_text / risk_factors_text)",
+      "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (ticker=NVDA, fiscal_year=2026)",
+      "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (ticker=NVDA, fiscal_year=2025)"
+    ],
+    "feature_deltas": [
+      {
+        "feature": "litigation_mentions",
+        "prior_value": 11.0,
+        "current_value": 12.0,
+        "delta": 1.0,
+        "source": "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (computed by dbt, not by the LLM)"
+      },
+      {
+        "feature": "impairment_mentions",
+        "prior_value": 9.0,
+        "current_value": 10.0,
+        "delta": 1.0,
+        "source": "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (computed by dbt, not by the LLM)"
+      },
+      {
+        "feature": "decline_mentions",
+        "prior_value": 15.0,
+        "current_value": 14.0,
+        "delta": -1.0,
+        "source": "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (computed by dbt, not by the LLM)"
+      },
+      {
+        "feature": "uncertain_mentions",
+        "prior_value": 14.0,
+        "current_value": 14.0,
+        "delta": 0.0,
+        "source": "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (computed by dbt, not by the LLM)"
+      },
+      {
+        "feature": "recession_mentions",
+        "prior_value": 1.0,
+        "current_value": 1.0,
+        "delta": 0.0,
+        "source": "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (computed by dbt, not by the LLM)"
+      },
+      {
+        "feature": "risk_word_total",
+        "prior_value": 50.0,
+        "current_value": 51.0,
+        "delta": 1.0,
+        "source": "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (computed by dbt, not by the LLM)"
+      },
+      {
+        "feature": "risk_words_per_1000",
+        "prior_value": 9.264406,
+        "current_value": 10.574331,
+        "delta": 1.3099,
+        "source": "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (computed by dbt, not by the LLM)"
+      }
+    ],
+    "changes": [
+      {
+        "change": "FY2026 adds a new standalone risk factor on counterparty exposure from commercial arrangements, financial guarantees, and requested customer financing.",
+        "change_type": "new_risk",
+        "source_section": "risk_factors",
+        "current_year_evidence": "Commercial arrangements expose us to counterparty risk, including customers' or partners' inability to fulfill their financial commitments",
+        "prior_year_evidence": null
+      },
+      {
+        "change": "China narrative shifts from constrained-but-growing to effective market foreclosure after the April 2025 H20 license requirement and $4.5B charge.",
+        "change_type": "tone_shift",
+        "source_section": "risk_factors",
+        "current_year_evidence": "we were effectively foreclosed from competing in China's data center computing/compute market",
+        "prior_year_evidence": "Our Data Center revenue in China grew in fiscal year 2025."
+      },
+      {
+        "change": "New demand driver/constraint: availability of data centers, energy, and capital for customers' AI infrastructure buildouts is flagged as crucial to future revenue.",
+        "change_type": "new_driver",
+        "source_section": "mdna",
+        "current_year_evidence": "The availability of data centers, energy, and capital to support the buildout of NVIDIA AI infrastructure by our customers and partners is crucial",
+        "prior_year_evidence": null
+      },
+      {
+        "change": "New driver: large-scale ecosystem investments, including $17.5B in private companies, $3.5B in guarantees, the Groq license, and a pending OpenAI partnership.",
+        "change_type": "new_driver",
+        "source_section": "mdna",
+        "current_year_evidence": "We invested $17.5 billion in private companies and infrastructure funds, primarily to support early‑stage startups.",
+        "prior_year_evidence": null
+      },
+      {
+        "change": "New risk: open-source foundation models (e.g., DeepSeek, Qwen) could shift workloads to competitors' platforms and reduce demand.",
+        "change_type": "new_risk",
+        "source_section": "risk_factors",
+        "current_year_evidence": "Open-source AI is dependent on developer adoption and if deployed on our competitors’ platforms, it could reduce demand for our products and services.",
+        "prior_year_evidence": null
+      },
+      {
+        "change": "The AI Diffusion IFR worldwide licensing regime, heavily discussed in FY2025, was rescinded; replaced by uncertainty over a successor rule, China antitrust findings, and revenue-share license terms — consistent with higher risk-word density and litigation mentions.",
+        "change_type": "language_drift",
+        "source_section": "risk_factors",
+        "current_year_evidence": "In May 2025, the USG announced that it would rescind the AI Diffusion IFR and implement a replacement rule.",
+        "prior_year_evidence": "the IFR will, unless modified, impose a worldwide licensing requirement on all products classified under Export Control Classification Numbers"
+      }
+    ],
+    "summary": "FY2026 pivots from Hopper-era export-control anxiety to realized China foreclosure (H20 $4.5B charge, rescinded AI Diffusion IFR, China antitrust findings), while adding new risks around counterparty guarantees, massive ecosystem investments (OpenAI, Groq, $17.5B), energy/capital constraints on AI buildouts, and open-source model competition. Numeric deltas show modestly elevated risk language and litigation mentions.",
+    "data_gaps": []
+  },
+  "signal": {
+    "ticker": "NVDA",
+    "fiscal_year": 2026,
+    "xgboost_score": 0.9371217489242554,
+    "model_nature": "XGBoost revenue-direction model used as a RANKED SCREEN (test ROC-AUC 0.726 vs 0.500 majority baseline, FY2024-25 holdout). It is NOT a calibrated classifier: at the default threshold it predicts the majority class for nearly all companies. Scores order companies by relative likelihood of revenue growth; they are not probabilities to act on.",
+    "sources": [
+      "XGBoost revenue-direction model (xgboost_revenue_direction.json) scored on the FY2026 feature row from EDGAR_X.INTERMEDIATE.INT_ML_FEATURES",
+      "EDGAR_X.INTERMEDIATE.INT_ML_FEATURES (ticker=NVDA, fiscal_year=2026)"
+    ],
+    "interpretation": "NVDA's fiscal-year 2026 observation receives an xgboost_score of 0.9371, placing it near the top of the model's ranked screen. This is a ranking signal, not a probability: it means the company-year exhibits the feature pattern the model associates with revenue-positive cohorts in its training data, with the dominant driver almost certainly the very strong trailing revenue momentum, reinforced by the company's large size. The exceptional margin and balance-sheet figures are consistent with the picture but carry less weight in the model's feature importance hierarchy.",
+    "statements": [
+      {
+        "statement": "The model assigns a score of 0.9371, ranking this company-year very high on the screen; given an AUC of 0.726, this should be read as a strong relative ranking rather than a precise forecast that revenue will grow.",
+        "source_metric": "xgboost_score",
+        "metric_value": 0.9371
+      },
+      {
+        "statement": "Trailing one-year revenue growth of roughly 65% is the most likely primary driver of the high score, since revenue momentum dominates the model's feature importance.",
+        "source_metric": "revenue_growth_1y",
+        "metric_value": 0.6547353579009478
+      },
+      {
+        "statement": "Revenue of about $215.9 billion makes this one of the largest companies in the universe; company size is the model's second-tier feature, and large scale here reinforces the elevated score.",
+        "source_metric": "revenue",
+        "metric_value": 215938000000.0
+      },
+      {
+        "statement": "A gross margin of roughly 71% is exceptionally high, consistent with strong pricing power, though margins carry comparatively modest weight in the model.",
+        "source_metric": "gross_margin",
+        "metric_value": 0.7106808435754708
+      },
+      {
+        "statement": "A net margin near 56% is extraordinary and signals very high profitability, but like gross margin it is a secondary contributor to the score.",
+        "source_metric": "net_margin",
+        "metric_value": 0.5560253406070261
+      },
+      {
+        "statement": "Debt-to-equity of about 0.054 indicates minimal leverage; leverage features matter little to the model, so this is supportive context rather than a score driver.",
+        "source_metric": "debt_to_equity",
+        "metric_value": 0.05383583503398117
+      },
+      {
+        "statement": "Liabilities-to-assets of roughly 0.24 confirms a conservative balance sheet, again a low-importance feature in the model's ranking.",
+        "source_metric": "liabilities_to_assets",
+        "metric_value": 0.23940658501085574
+      },
+      {
+        "statement": "Annualised ROE of approximately 3.05 (about 305%) is extreme and may reflect a small equity base or annualisation effects; the model does not weight profitability ratios heavily, so this is unlikely to be a major driver of the 0.9371 score.",
+        "source_metric": "roe_annualised",
+        "metric_value": 3.0533335876358136
+      }
+    ],
+    "caveats": [
+      "The score is a ranked-screen output, not a probability of revenue growth; with an AUC of 0.726 the model has only moderate discriminative power and high scores can still be wrong.",
+      "The training universe is survivorship-biased: companies that delisted or failed are under-represented, which can inflate apparent signal quality for momentum-driven names.",
+      "The model is trained ex-Financials, so cross-sector comparisons of the score outside that scope are not meaningful.",
+      "Features reflect information only as of the filing date; subsequent developments (demand shifts, competition, macro changes) are not captured.",
+      "Extreme values such as 65% revenue growth and a ~3.05 annualised ROE sit far from the bulk of the training distribution, where tree-based models can behave less reliably.",
+      "No macro-regime feature value was provided in the input, so its contribution to the score cannot be assessed here despite being a known second-tier driver."
+    ],
+    "grounding_warnings": []
+  }
+}

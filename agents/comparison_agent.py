@@ -101,10 +101,11 @@ point is that the language is ABSENT in that year.
 3. Interpret the numeric deltas, never contradict them; they were computed \
 from the real filings.
 4. If a section is marked MISSING, record that in data_gaps; never invent.
-5. Report the 4-8 MOST material changes only. Be terse: every evidence \
-excerpt under 150 characters, each change description one sentence, the \
-summary under 80 words. Your entire JSON response must fit comfortably \
-within 3,500 tokens — truncated output is discarded and wastes the call.
+5. Report the 4-6 MOST material changes only. Be terse: every evidence \
+excerpt under 120 characters, each change description one sentence, the \
+summary under 60 words. Your entire JSON response must fit comfortably \
+within 3,000 tokens — truncated output is discarded and wastes the call. \
+This applies regardless of how long the filings are.
 """
 
 

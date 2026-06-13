@@ -1,0 +1,58 @@
+{
+ "MSFT": {
+  "ticker": "MSFT",
+  "fiscal_year": 2025,
+  "scores": {
+   "factual_grounding": 5,
+   "internal_consistency": 5,
+   "honesty": 5,
+   "specificity": 5
+  },
+  "memo_cost": 0.5786,
+  "judge_cost": 0.098,
+  "warnings": 3,
+  "note": ""
+ },
+ "JNJ": {
+  "ticker": "JNJ",
+  "fiscal_year": 2025,
+  "scores": {
+   "factual_grounding": 4,
+   "internal_consistency": 5,
+   "honesty": 5,
+   "specificity": 5
+  },
+  "memo_cost": 2.0432,
+  "judge_cost": 0.5518,
+  "warnings": 3,
+  "note": ""
+ },
+ "CAT": {
+  "ticker": "CAT",
+  "fiscal_year": 2025,
+  "scores": {
+   "factual_grounding": 5,
+   "internal_consistency": 5,
+   "honesty": 5,
+   "specificity": 5
+  },
+  "memo_cost": 2.6997,
+  "judge_cost": 0.7884,
+  "warnings": 3,
+  "note": ""
+ },
+ "NVDA": {
+  "ticker": "NVDA",
+  "fiscal_year": 2026,
+  "scores": {
+   "factual_grounding": 5,
+   "internal_consistency": 5,
+   "honesty": 5,
+   "specificity": 5
+  },
+  "memo_cost": 2.1555,
+  "judge_cost": 0.6315,
+  "warnings": 1,
+  "note": ""
+ }
+}

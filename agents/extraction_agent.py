@@ -67,7 +67,10 @@ Hard rules:
 from that section that supports the claim. Do not paraphrase inside the quote.
 4. If a section is marked [SECTION ... : MISSING], do not invent content for \
 it — note the limitation in data_gaps instead.
-5. Quality over quantity: 5-12 well-grounded claims beat an exhaustive list.
+5. Report the 6-9 MOST material claims only. Be terse: every source_quote \
+under 150 characters, every claim one sentence. Your entire JSON response \
+must fit comfortably within 3,000 tokens — truncated output is discarded \
+and wastes the call.
 """
 
 
