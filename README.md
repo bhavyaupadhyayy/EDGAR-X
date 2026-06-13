@@ -11,7 +11,7 @@ EDGAR-X pulls 10-K filings and XBRL fundamentals for 498 current S&P 500 compani
 
 ## Built vs planned
 
-This repo is honest about its own state. Layers 1–4 are built; all real data was loaded through the checkpointed backfill path (source APIs → Snowflake directly). Layers 5–7 (self-improvement, API/dashboard, cloud deployment) are designed but **not built**.
+This repo is honest about its own state. Layers 1–5 are built; all real data was loaded through the checkpointed backfill path (source APIs → Snowflake directly). Layers 6–7 (API/dashboard, cloud deployment) are designed but **not built**.
 
 | Layer | Scope | Status |
 |---|---|---|
@@ -19,7 +19,7 @@ This repo is honest about its own state. Layers 1–4 are built; all real data w
 | 2 | dbt transformations: 7 staging / 5 intermediate / 6 mart models, 75 tests, DuckDB dev + Snowflake prod targets | ✅ Built |
 | 3 | ML: S&P 500 backfill (ex-Financials), labeled training mart, XGBoost vs two baselines, SHAP, model card | ✅ Built |
 | 4 | LLM agent tier: three attributed specialist agents (extraction / comparison / signal), a Claude Fable 5 orchestrator producing source-grounded memos with code-supplied provenance, and an LLM-as-judge evaluation harness (Claude Opus 4.8). Demonstrated on 5 companies across 3 sectors, avg judge scores 4.6/5/5/5 | ✅ Built |
-| 5 | Self-improvement loop (outcome tracking, model retraining triggers) | 📋 Planned, not built |
+| 5 | Self-improvement loop: a `prediction_outcomes` mart joining model predictions to realized FY(N+1) outcomes, a calibration/monitoring engine (Wilson CIs, score-decile calibration, per-fiscal-year and per-sector breakdowns) computed strictly on out-of-sample rows, and a sample-size-gated retraining trigger whose execution is scaffolded for Layer 7 (Airflow). Calibration currently runs on a small out-of-sample window (447 rows, FY2024–25) — findings are preliminary; the framework is built to produce robust numbers as more fiscal years materialize | ✅ Built |
 | 6 | FastAPI service + Streamlit dashboard | 📋 Planned, not built |
 | 7 | Cloud deployment (Terraform/Kubernetes), CI/CD, monitoring | 📋 Planned, not built |
 
@@ -54,7 +54,11 @@ flowchart LR
         AGENTS["Fable 5 specialists +<br/>orchestrator memos +<br/>Opus 4.8 judge"]
     end
 
-    subgraph planned["Layers 5–7 — designed, NOT built"]
+    subgraph selfimprove_l5["Layer 5 — self-improvement ✅"]
+        CALIB["outcome tracking +<br/>calibration engine +<br/>retraining trigger"]
+    end
+
+    subgraph planned["Layers 6–7 — designed, NOT built"]
         API["FastAPI + dashboard"]
         DEPLOY["Cloud deploy + CI/CD"]
     end
@@ -71,13 +75,15 @@ flowchart LR
     RAW --> DBT --> MLSET --> XGB
     MLSET --> AGENTS
     XGB --> AGENTS
+    XGB --> CALIB
+    CALIB -.-> API
     XGB -.-> API
     AGENTS -.-> API -.-> DEPLOY
 
     classDef live fill:#e8f5e9,stroke:#2e7d32
     classDef empty fill:#fafafa,stroke:#9e9e9e,stroke-dasharray:4 4
     classDef future fill:#f5f5f5,stroke:#bdbdbd,stroke-dasharray:6 4,color:#757575
-    class EDGAR,FRED,KAFKA,AIRFLOW,BACKFILL,RAW,DBT,MLSET,XGB,AGENTS live
+    class EDGAR,FRED,KAFKA,AIRFLOW,BACKFILL,RAW,DBT,MLSET,XGB,AGENTS,CALIB live
     class OPT,SENT,TRAN empty
     class API,DEPLOY,planned future
 ```
@@ -159,5 +165,7 @@ tests/        124 unit tests (all external I/O mocked)
 docs/         engineering case study
 agents/       Layer-4 agent tier: cost-capped base agent, three attributed specialists,
               orchestrator (source-grounded memos), LLM-as-judge evaluation
-api/ dashboard/   placeholders for planned Layers 5-7 (not built)
+self_improvement/   Layer-5 loop: prediction scoring, calibration/monitoring engine,
+              retraining trigger (execution scaffolded for Layer 7)
+api/ dashboard/   placeholders for planned Layers 6-7 (not built)
 ```
