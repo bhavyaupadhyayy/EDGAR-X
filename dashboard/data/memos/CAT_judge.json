@@ -1,0 +1,11 @@
+{
+ "ticker": "CAT",
+ "scores": {
+  "factual_grounding": 5,
+  "internal_consistency": 5,
+  "honesty": 5,
+  "specificity": 5
+ },
+ "verdict": "A strong, well-grounded memo. Quotes verify verbatim, metrics match, and it is candid about model limitations and the gross-margin artifact. It even self-reports traceability warnings where findings cite the signal agent's attributions. Specific to CAT throughout. Minor concern: the three flagged signal attributions slightly weaken the citation chain but the underlying values are all correct.",
+ "judge_model": "claude-opus-4-8"
+}

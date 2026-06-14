@@ -1,0 +1,11 @@
+{
+ "ticker": "AAPL",
+ "scores": {
+  "factual_grounding": 4,
+  "internal_consistency": 5,
+  "honesty": 5,
+  "specificity": 5
+ },
+ "verdict": "A strong, highly specific memo with verbatim-accurate quotes and correct metrics. It handles model limitations honestly and is internally consistent, even self-flagging an attribution gap. Minor deduction on factual grounding for a self-disclosed traceability warning on finding #3's attribution to the signal agent.",
+ "judge_model": "claude-opus-4-8"
+}

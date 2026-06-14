@@ -9,9 +9,11 @@
 
 EDGAR-X pulls 10-K filings and XBRL fundamentals for 498 current S&P 500 companies directly from the SEC, joins them with macro indicators from FRED, and asks a deliberately modest question: *given everything knowable on the day a company files its 10-K, will next year's revenue be higher?* Answering it honestly required solving the real problems of financial data engineering — XBRL tag migrations, silent API pagination truncation, REIT accounting quirks, and filer sign errors — each of which was caught by an automated data test, not by luck. The result is a ranked screen with test ROC-AUC 0.726 against a 0.5 majority baseline, reported with its limitations attached.
 
+**🔗 Live demo:** _https://&lt;your-app&gt;.streamlit.app — deploy in ~2 min via [dashboard/DEPLOY.md](dashboard/DEPLOY.md); runs free and permanently on a committed static snapshot (no live DB/API)._
+
 ## Built vs planned
 
-This repo is honest about its own state. Layers 1–5 are built; all real data was loaded through the checkpointed backfill path (source APIs → Snowflake directly). Layers 6–7 (API/dashboard, cloud deployment) are designed but **not built**.
+This repo is honest about its own state. Layers 1–5 plus the Layer-6 dashboard are built; all real data was loaded through the checkpointed backfill path (source APIs → Snowflake directly). The Layer-6 FastAPI service and Layer 7 (cloud deployment, CI/CD, monitoring) are designed but **not built**.
 
 | Layer | Scope | Status |
 |---|---|---|
@@ -20,7 +22,7 @@ This repo is honest about its own state. Layers 1–5 are built; all real data w
 | 3 | ML: S&P 500 backfill (ex-Financials), labeled training mart, XGBoost vs two baselines, SHAP, model card | ✅ Built |
 | 4 | LLM agent tier: three attributed specialist agents (extraction / comparison / signal), a Claude Fable 5 orchestrator producing source-grounded memos with code-supplied provenance, and an LLM-as-judge evaluation harness (Claude Opus 4.8). Demonstrated on 5 companies across 3 sectors, avg judge scores 4.6/5/5/5 | ✅ Built |
 | 5 | Self-improvement loop: a `prediction_outcomes` mart joining model predictions to realized FY(N+1) outcomes, a calibration/monitoring engine (Wilson CIs, score-decile calibration, per-fiscal-year and per-sector breakdowns) computed strictly on out-of-sample rows, and a sample-size-gated retraining trigger whose execution is scaffolded for Layer 7 (Airflow). Calibration currently runs on a small out-of-sample window (447 rows, FY2024–25) — findings are preliminary; the framework is built to produce robust numbers as more fiscal years materialize | ✅ Built |
-| 6 | FastAPI service + Streamlit dashboard | 📋 Planned, not built |
+| 6 | Streamlit dashboard — deployed on Streamlit Community Cloud reading a committed static snapshot (no live DB / API / secrets), so it runs free and permanently. Three pages (company explorer, calibration, sector overview) with honesty caveats throughout. [Deploy guide](dashboard/DEPLOY.md). _(The originally-scoped FastAPI serving layer is not built.)_ | ✅ Built (dashboard) |
 | 7 | Cloud deployment (Terraform/Kubernetes), CI/CD, monitoring | 📋 Planned, not built |
 
 Layer 4 demo evidence — generated memos, per-company judge reports, scores, and full cost accounting: [docs/sample_memos/README.md](docs/sample_memos/README.md).
@@ -58,8 +60,12 @@ flowchart LR
         CALIB["outcome tracking +<br/>calibration engine +<br/>retraining trigger"]
     end
 
-    subgraph planned["Layers 6–7 — designed, NOT built"]
-        API["FastAPI + dashboard"]
+    subgraph dash_l6["Layer 6 — dashboard ✅"]
+        DASH["Streamlit dashboard<br/>(static snapshot, deployed)"]
+    end
+
+    subgraph planned["Layer 6 API + Layer 7 — designed, NOT built"]
+        API["FastAPI service"]
         DEPLOY["Cloud deploy + CI/CD"]
     end
 
@@ -76,14 +82,16 @@ flowchart LR
     MLSET --> AGENTS
     XGB --> AGENTS
     XGB --> CALIB
-    CALIB -.-> API
+    XGB --> DASH
+    AGENTS --> DASH
+    CALIB --> DASH
     XGB -.-> API
     AGENTS -.-> API -.-> DEPLOY
 
     classDef live fill:#e8f5e9,stroke:#2e7d32
     classDef empty fill:#fafafa,stroke:#9e9e9e,stroke-dasharray:4 4
     classDef future fill:#f5f5f5,stroke:#bdbdbd,stroke-dasharray:6 4,color:#757575
-    class EDGAR,FRED,KAFKA,AIRFLOW,BACKFILL,RAW,DBT,MLSET,XGB,AGENTS,CALIB live
+    class EDGAR,FRED,KAFKA,AIRFLOW,BACKFILL,RAW,DBT,MLSET,XGB,AGENTS,CALIB,DASH live
     class OPT,SENT,TRAN empty
     class API,DEPLOY,planned future
 ```
@@ -167,5 +175,7 @@ agents/       Layer-4 agent tier: cost-capped base agent, three attributed speci
               orchestrator (source-grounded memos), LLM-as-judge evaluation
 self_improvement/   Layer-5 loop: prediction scoring, calibration/monitoring engine,
               retraining trigger (execution scaffolded for Layer 7)
-api/ dashboard/   placeholders for planned Layers 6-7 (not built)
+dashboard/    Layer-6 Streamlit dashboard + committed static snapshot (dashboard/data/);
+              deployed on Community Cloud, zero live deps (DEPLOY.md, REFRESH.md)
+api/          placeholder for the planned FastAPI service (not built)
 ```

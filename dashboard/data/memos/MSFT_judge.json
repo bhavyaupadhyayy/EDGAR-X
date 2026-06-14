@@ -1,0 +1,11 @@
+{
+ "ticker": "MSFT",
+ "scores": {
+  "factual_grounding": 5,
+  "internal_consistency": 5,
+  "honesty": 5,
+  "specificity": 5
+ },
+ "verdict": "A rigorous, well-grounded memo. Quotes verify verbatim, metrics match real values, attributions faithful, and the ranked-screen/limitation discipline is exemplary. Highly company-specific. The self-disclosed traceability warnings show transparency rather than concealment. No material defects found.",
+ "judge_model": "claude-opus-4-8"
+}

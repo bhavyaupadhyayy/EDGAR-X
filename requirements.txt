@@ -1,0 +1,15 @@
+# Streamlit Community Cloud deploy manifest for the EDGAR-X dashboard.
+#
+# This file exists at the repo root ONLY so Community Cloud installs the
+# minimal, fast-building dashboard dependencies and NOT the full project stack
+# in pyproject.toml (which includes snowflake-connector, anthropic, xgboost,
+# confluent-kafka, etc. — heavy, and confluent-kafka needs system libs that
+# would fail the Cloud build). The deployed app reads a committed static
+# snapshot and needs nothing more than these four packages.
+#
+# For local development of the whole project, use pyproject.toml instead:
+#   pip install -e '.[dev]'
+streamlit>=1.40
+pandas>=2.0
+pyarrow>=15
+plotly>=5.20

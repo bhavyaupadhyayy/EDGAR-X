@@ -1,0 +1,10 @@
+# Dark, restrained, technical theme — single accent color.
+[theme]
+base = "dark"
+primaryColor = "#7AA2F7"
+backgroundColor = "#0E1116"
+secondaryBackgroundColor = "#161B22"
+textColor = "#C9D1D9"
+
+[server]
+headless = true

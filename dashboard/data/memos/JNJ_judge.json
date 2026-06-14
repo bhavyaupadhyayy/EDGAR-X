@@ -1,0 +1,11 @@
+{
+ "ticker": "JNJ",
+ "scores": {
+  "factual_grounding": 4,
+  "internal_consistency": 5,
+  "honesty": 5,
+  "specificity": 5
+ },
+ "verdict": "A high-quality, specific, and honest memo well grounded in the filing with consistent framing of the model signal as a ranked screen. The principal defect is a misattributed talc quote where the FY2023 $7.0B charge is conflated with the FY2025 reversal narrative; the memo's own traceability warnings flag this attribution as unverified.",
+ "judge_model": "claude-opus-4-8"
+}

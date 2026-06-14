@@ -1,0 +1,11 @@
+{
+ "ticker": "NVDA",
+ "scores": {
+  "factual_grounding": 5,
+  "internal_consistency": 5,
+  "honesty": 5,
+  "specificity": 5
+ },
+ "verdict": "An exemplary memo: every quote verifies verbatim, all metrics match, limitations are scrupulously respected, and content is highly company-specific. The pipeline even self-flags a minor traceability gap. The ROE 'about 305%' interpretation is appropriately hedged as possibly reflecting annualisation effects. No material defects.",
+ "judge_model": "claude-opus-4-8"
+}
