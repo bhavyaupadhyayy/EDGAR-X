@@ -32,3 +32,10 @@ ml/revenue_predictor/artifacts/*
 
 # Agent layer
 agents/cost_log.jsonl
+
+# Terraform (Layer 7 IaC) — commit .tf + .terraform.lock.hcl; ignore the rest
+infrastructure/terraform/.terraform/
+infrastructure/terraform/*.tfstate
+infrastructure/terraform/*.tfstate.*
+infrastructure/terraform/terraform.tfvars
+infrastructure/terraform/*.tfplan

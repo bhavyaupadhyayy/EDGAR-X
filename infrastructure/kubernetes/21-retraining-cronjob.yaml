@@ -1,0 +1,48 @@
+# Scheduled model-retraining CronJob — wires the Layer 5 retraining trigger.
+# Runs weekly (Mondays 06:00 UTC); the entrypoint evaluates the retrain trigger
+# (drift / freshness / performance gates from Layer 5) and only retrains +
+# registers a new model when the gate fires, otherwise exits cleanly.
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: edgar-x-retraining
+  namespace: edgar-x
+  labels:
+    app.kubernetes.io/part-of: edgar-x
+    app.kubernetes.io/component: retraining
+spec:
+  schedule: "0 6 * * 1"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  startingDeadlineSeconds: 3600
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      ttlSecondsAfterFinished: 604800
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/part-of: edgar-x
+            app.kubernetes.io/component: retraining
+        spec:
+          serviceAccountName: edgar-x-app
+          restartPolicy: Never
+          containers:
+            - name: retraining
+              image: <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/edgar-x/jobs:latest
+              # Layer 5 entrypoint: evaluate trigger, retrain only if gated.
+              command: ["python", "-m", "edgar_x.ml.retrain_trigger"]
+              args: ["--check-and-retrain"]
+              envFrom:
+                - configMapRef:
+                    name: edgar-x-config
+                - secretRef:
+                    name: edgar-x-secrets
+              resources:
+                requests:
+                  cpu: "2"
+                  memory: "4Gi"
+                limits:
+                  cpu: "4"
+                  memory: "8Gi"

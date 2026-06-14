@@ -1,0 +1,49 @@
+# Airflow scheduler — the orchestrator that drives the EDGAR-X pipeline DAGs
+# (ingest → dbt transform → score → agent analysis). One replica: the scheduler
+# is a singleton. Image is the `jobs` image built by CI and pushed to ECR.
+# <ACCOUNT_ID> is a deploy-time placeholder.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-scheduler
+  namespace: edgar-x
+  labels:
+    app.kubernetes.io/part-of: edgar-x
+    app.kubernetes.io/component: scheduler
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: scheduler
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/part-of: edgar-x
+        app.kubernetes.io/component: scheduler
+    spec:
+      serviceAccountName: edgar-x-app
+      containers:
+        - name: scheduler
+          image: <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/edgar-x/jobs:latest
+          args: ["airflow", "scheduler"]
+          envFrom:
+            - configMapRef:
+                name: edgar-x-config
+            - secretRef:
+                name: edgar-x-secrets
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+          livenessProbe:
+            exec:
+              command:
+                ["bash", "-c", "airflow jobs check --job-type SchedulerJob --hostname $(hostname)"]
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            timeoutSeconds: 30

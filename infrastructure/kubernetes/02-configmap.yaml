@@ -1,0 +1,27 @@
+# Non-secret runtime configuration shared by all EDGAR-X workloads.
+# NOTHING secret lives here — only names, regions, flags, and caps. Secret
+# VALUES (Snowflake key-pair, Anthropic API key) come from the Secret in
+# 03-secret.example.yaml, which is populated out-of-band, never from this file.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: edgar-x-config
+  namespace: edgar-x
+  labels:
+    app.kubernetes.io/part-of: edgar-x
+data:
+  EDGAR_ENV: "prod"
+  AWS_REGION: "us-east-1"
+  # SEC EDGAR requires a descriptive User-Agent; not a secret.
+  EDGAR_USER_AGENT: "edgar-x research officiallybhavya@gmail.com"
+  # Snowflake target object names (non-secret); account/user/key are in the Secret.
+  SNOWFLAKE_WAREHOUSE: "EDGAR_X_WH"
+  SNOWFLAKE_DATABASE: "EDGAR_X"
+  SNOWFLAKE_SCHEMA: "MARTS"
+  # dbt target selecting the Snowflake profile.
+  DBT_TARGET: "prod"
+  # Agent layer guardrail: hard daily spend cap in USD (enforced in code).
+  AGENT_DAILY_SPEND_CAP_USD: "25"
+  # Model identifiers used by the agent layer.
+  AGENT_MODEL_FAST: "claude-fable-5"
+  AGENT_MODEL_DEEP: "claude-opus-4-8"

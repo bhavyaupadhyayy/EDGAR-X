@@ -1,0 +1,24 @@
+# Example variable overrides for the EDGAR-X infrastructure.
+#
+# Copy to terraform.tfvars and adjust. This file contains NO secrets — secret
+# VALUES (Snowflake key-pair, Anthropic API key) are never set via Terraform;
+# they are injected into AWS Secrets Manager out-of-band after apply.
+#
+# Reminder: this IaC is deployment-ready but NOT deployed. `terraform apply`
+# would provision billable AWS resources.
+
+project     = "edgar-x"
+environment = "prod"
+aws_region  = "us-east-1"
+
+vpc_cidr = "10.0.0.0/16"
+az_count = 2
+
+kubernetes_version = "1.30"
+
+node_instance_types = ["t3.large"]
+node_desired_size   = 2
+node_min_size       = 2
+node_max_size       = 4
+
+ecr_repositories = ["agents", "api", "dashboard", "jobs"]

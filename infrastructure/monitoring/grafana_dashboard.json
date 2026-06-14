@@ -1,0 +1,103 @@
+{
+  "__comment": "EDGAR-X Grafana dashboard — DEPLOYMENT-READY, NOT DEPLOYED. Importable JSON for a live deployment's Grafana. The panels query Prometheus series that the EDGAR-X services are intended to expose; the metrics emitter (monitoring/prometheus/metrics.py) is currently a placeholder, so a live instance is required for these panels to render data.",
+  "title": "EDGAR-X — Pipeline, Cost & Model Health",
+  "uid": "edgar-x-overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "tags": ["edgar-x", "deployment-ready-not-deployed"],
+  "time": { "from": "now-24h", "to": "now" },
+  "timezone": "utc",
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "query": "prometheus",
+        "current": { "text": "Prometheus", "value": "Prometheus" }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Pipeline throughput (records/sec)",
+      "type": "timeseries",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "fieldConfig": { "defaults": { "unit": "rps" }, "overrides": [] },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (stage) (rate(edgar_x_pipeline_records_processed_total[5m]))",
+          "legendFormat": "{{stage}}"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Agent cost (USD, cumulative today)",
+      "type": "timeseries",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "fieldConfig": { "defaults": { "unit": "currencyUSD" }, "overrides": [] },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (agent) (increase(edgar_x_agent_cost_usd_total[24h]))",
+          "legendFormat": "{{agent}}"
+        },
+        {
+          "refId": "B",
+          "expr": "sum(increase(edgar_x_agent_cost_usd_total[24h]))",
+          "legendFormat": "total"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Model performance (AUC, latest registered model)",
+      "type": "stat",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "min": 0.5,
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "yellow", "value": 0.65 },
+              { "color": "green", "value": 0.72 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "max(edgar_x_model_auc)",
+          "legendFormat": "AUC"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Prediction calibration (Brier score, lower is better)",
+      "type": "timeseries",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "fieldConfig": { "defaults": { "unit": "none" }, "overrides": [] },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "edgar_x_prediction_brier_score",
+          "legendFormat": "brier"
+        }
+      ]
+    }
+  ]
+}

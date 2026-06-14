@@ -1,0 +1,50 @@
+# Prometheus scrape config for a LIVE EDGAR-X deployment — DEPLOYMENT-READY,
+# NOT DEPLOYED. There is no running Prometheus and no cluster to scrape; this is
+# the configuration a deployed monitoring stack would use.
+#
+# Honesty note: the application metrics endpoint these jobs scrape
+# (monitoring/prometheus/metrics.py) is currently a PLACEHOLDER — the EDGAR-X
+# services do not yet emit these series. The metric names referenced here and in
+# grafana_dashboard.json define the intended contract for that emitter; the
+# dashboard will populate once the services export them.
+
+global:
+  scrape_interval: 30s
+  evaluation_interval: 30s
+  external_labels:
+    project: edgar-x
+    env: prod
+
+scrape_configs:
+  # EDGAR-X application pods exposing /metrics on port 9090.
+  - job_name: edgar-x-app
+    kubernetes_sd_configs:
+      - role: pod
+        namespaces:
+          names: [edgar-x]
+    relabel_configs:
+      # Only scrape pods opted in via the prometheus.io/scrape annotation.
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: "true"
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        target_label: __address__
+        regex: (.+)
+        replacement: "$1"
+      - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_component]
+        target_label: component
+      - source_labels: [__meta_kubernetes_namespace]
+        target_label: namespace
+
+  # Kubernetes node/pod resource metrics via kube-state-metrics (assumes the
+  # cluster monitoring add-on is installed).
+  - job_name: kube-state-metrics
+    kubernetes_sd_configs:
+      - role: endpoints
+        namespaces:
+          names: [monitoring]
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_service_name]
+        action: keep
+        regex: kube-state-metrics

@@ -1,0 +1,40 @@
+# One-shot backfill + scoring Job — run on demand to ingest a historical window
+# and score it through the full pipeline. This is a Job (runs to completion),
+# not a long-running Deployment. Re-run by re-creating it (or via `kubectl create
+# job ... --from`). Args are illustrative of the Layer 1–4 entrypoints.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: edgar-x-backfill
+  namespace: edgar-x
+  labels:
+    app.kubernetes.io/part-of: edgar-x
+    app.kubernetes.io/component: backfill
+spec:
+  backoffLimit: 2
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/part-of: edgar-x
+        app.kubernetes.io/component: backfill
+    spec:
+      serviceAccountName: edgar-x-app
+      restartPolicy: Never
+      containers:
+        - name: backfill
+          image: <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/edgar-x/jobs:latest
+          command: ["python", "-m", "edgar_x.pipelines.backfill"]
+          args: ["--start", "2020-01-01", "--end", "2024-12-31", "--score"]
+          envFrom:
+            - configMapRef:
+                name: edgar-x-config
+            - secretRef:
+                name: edgar-x-secrets
+          resources:
+            requests:
+              cpu: "1"
+              memory: "2Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"

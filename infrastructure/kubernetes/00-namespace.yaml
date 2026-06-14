@@ -1,0 +1,12 @@
+# EDGAR-X Kubernetes manifests — DEPLOYMENT-READY, NOT DEPLOYED.
+# These describe the workloads a real EKS cluster would run. They are validated
+# offline (kubeconform / kubectl --dry-run=client) but have NOT been applied to
+# any cluster. There is no cluster: applying would require provisioning the
+# billable EKS infrastructure described in ../terraform.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: edgar-x
+  labels:
+    app.kubernetes.io/part-of: edgar-x
+    status: deployment-ready-not-deployed
