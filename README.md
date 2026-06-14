@@ -9,7 +9,9 @@
 
 EDGAR-X pulls 10-K filings and XBRL fundamentals for 498 current S&P 500 companies directly from the SEC, joins them with macro indicators from FRED, and asks a deliberately modest question: *given everything knowable on the day a company files its 10-K, will next year's revenue be higher?* Answering it honestly required solving the real problems of financial data engineering — XBRL tag migrations, silent API pagination truncation, REIT accounting quirks, and filer sign errors — each of which was caught by an automated data test, not by luck. The result is a ranked screen with test ROC-AUC 0.726 against a 0.5 majority baseline, reported with its limitations attached.
 
-**🔗 Live demo:** _https://&lt;your-app&gt;.streamlit.app — deploy in ~2 min via [dashboard/DEPLOY.md](dashboard/DEPLOY.md); runs free and permanently on a committed static snapshot (no live DB/API)._
+### 🔴 [Live demo →](https://edgar-x-26rm39rzy6c8fjzyb9pxdt.streamlit.app)
+
+Runs free and permanently on Streamlit Community Cloud against a committed static snapshot — no live database, API, or secrets. ([How it's deployed](dashboard/DEPLOY.md).)
 
 ## Built vs planned
 
