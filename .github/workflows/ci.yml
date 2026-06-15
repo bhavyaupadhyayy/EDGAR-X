@@ -64,6 +64,10 @@ jobs:
           cache: pip
       - name: Install dbt-duckdb
         run: pip install "dbt-core>=1.8" "dbt-duckdb>=1.8"
+      - name: Create DuckDB working dir
+        # The dev profile writes to .local/edgar_x.duckdb. That dir is gitignored
+        # and absent on a fresh checkout; DuckDB won't create the parent dir.
+        run: mkdir -p .local
       - name: dbt parse
         # Ephemeral, zero-credential: DuckDB writes to a local file in the runner.
         run: dbt parse --target dev --profiles-dir .

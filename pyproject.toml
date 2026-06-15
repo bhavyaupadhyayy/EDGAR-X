@@ -20,6 +20,8 @@ dependencies = [
     "fastavro>=1.9",
     "snowflake-connector-python[pandas]>=3.12",
     "anthropic>=0.79",
+    # Used by self_improvement/calibration.py (roc_auc_score) — runtime dep.
+    "scikit-learn>=1.5",
 ]
 
 [project.optional-dependencies]
@@ -30,6 +32,13 @@ dev = [
     "respx>=0.22",
     "ruff>=0.4",
     "mypy>=1.10",
+]
+# Model-training stack (ml/revenue_predictor/train.py). Imports are deferred
+# inside functions, so this is only needed to actually train/explain a model —
+# not imported by the default test run.
+ml = [
+    "xgboost>=2.0",
+    "shap>=0.44",
 ]
 
 [tool.setuptools.packages.find]
